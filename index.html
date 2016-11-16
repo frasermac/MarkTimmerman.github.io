@@ -1,3 +1,56 @@
 <html>
-    <h1>Test</h1>
+<head>
+    <script src='/js/d3.v3.min.js'></script>
+    <script src='/js/d3Component.js'></script>
+    <script src='/js/Places.js'></script>
+
+    <script type='text/javascript'>
+        var world = {
+            container: 'body',
+        };
+
+        window.onload = function() {
+            d3.json('/data/places/stays.json', function(err, data) {
+                if(err) {
+                    console.error(err);
+                    return;
+                }
+
+                world.places = new Places({
+                    google: {
+                        geocodingAPIKey: 'AIzaSyAwE7cXAGV8Hm1bbOJpNUu3zo60Kdl4AjA'
+                    },
+                    data: data,
+                    margin: {
+                        top: 150,
+                        bottom: 50,
+                        right: 100
+                    }
+                });
+                console.log(world.places);
+            });
+        };
+    </script>
+
+    <style>
+        html, body {
+            margin: 0;
+            background-color: #000;
+        }
+
+        .g {
+            pointer-events: all;
+        }
+
+        .stayBar {
+            pointer-events: none;
+        }
+
+        .hoverArea {
+            pointer-events: all;
+        }
+    </style>
+</head>
+<body>
+</body>
 </html>

@@ -1,0 +1,1450 @@
+[
+    {
+        "place": "NYC",
+        "address": "15 Cornelia Street, #3R, New York, NY",
+        "name": "Kate's",
+        "coordinates": {
+            "lat": 40.7316819,
+            "lng": -74.0019452
+        },
+        "startDate": "2016-11-16",
+        "endDate": "2016-11-17"
+    },
+    {
+        "place": "Boston, MA",
+        "address": "103 Myrtle Street, Unit 2, Boston, MA",
+        "name": "103 Myrtle",
+        "coordinates": {
+            "lat": 42.35937209999999,
+            "lng": -71.0682762
+        },
+        "startDate": "2016-10-30",
+        "endDate": "2016-11-16"
+    },
+    {
+        "place": "Durham, NC",
+        "address": "4130 Garrett Road, Apt 1227, Durham, NC",
+        "name": "Jeff @ Duke Law",
+        "coordinates": {
+            "lat": 35.96436300000001,
+            "lng": -78.9791492
+        },
+        "startDate": "2016-10-28",
+        "endDate": "2016-10-30"
+    },
+    {
+        "place": "Boston, MA",
+        "name": "103 Myrtle",
+        "startDate": "2016-10-23",
+        "endDate": "2016-10-28"
+    },
+    {
+        "place": "Brookfield, CT",
+        "address": "66 Stony Hill Road, Brookfield, CT, 06804",
+        "name": "Home",
+        "coordinates": {
+            "lat": 41.437542,
+            "lng": -73.391533
+        },
+        "startDate": "2016-10-21",
+        "endDate": "2016-10-23"
+    },
+    {
+        "place": "Boston, MA",
+        "name": "103 Myrtle",
+        "startDate": "2016-10-10",
+        "endDate": "2016-10-21"
+    },
+    {
+        "place": "York, ME",
+        "address": "571 York Street, York Harbor, ME",
+        "name": "Nichols Residence",
+        "coordinates": {
+            "lat": 43.1361264,
+            "lng": -70.63027470000002
+        },
+        "startDate": "2016-10-08",
+        "endDate": "2016-10-10"
+    },
+    {
+        "place": "Boston, MA",
+        "name": "103 Myrtle",
+        "startDate": "2016-9-25",
+        "endDate": "2016-10-08"
+    },
+    {
+        "place": "West Yarmouth, Cape Cod, MA",
+        "address": "350 Great Island Road, West Yarmouth, MA",
+        "name": "Bugga Beach",
+        "coordinates": {
+            "lat": 41.631496,
+            "lng": -70.238052
+        },
+        "startDate": "2016-9-23",
+        "endDate": "2016-9-25"
+    },
+    {
+        "place": "Boston, MA",
+        "name": "103 Myrtle",
+        "startDate": "2016-9-20",
+        "endDate": "2016-9-23"
+    },
+    {
+        "place": "Brookfield, CT",
+        "name": "Home",
+        "startDate": "2016-9-19",
+        "endDate": "2016-9-20"
+    },
+    {
+        "place": "Boston, MA",
+        "name": "103 Myrtle",
+        "startDate": "2016-9-02",
+        "endDate": "2016-9-19"
+    },
+    {
+        "place": "Brookfield, CT",
+        "name": "Home",
+        "startDate": "2016-9-01",
+        "endDate": "2016-9-02"
+    },
+    {
+        "place": "Boston, MA",
+        "address": "48 Winter Street, Boston, MA",
+        "name": "48 Winter Street, Boston, MA",
+        "coordinates": {
+            "lat": 42.3560722,
+            "lng": -71.0618626
+        },
+        "startDate": "2016-8-29",
+        "endDate": "2016-9-01"
+    },
+    {
+        "place": "Brookfield, CT",
+        "name": "Home",
+        "startDate": "2016-8-26",
+        "endDate": "2016-8-29"
+    },
+    {
+        "place": "West Yarmouth, Cape Cod, MA",
+        "name": "Bugga Beach",
+        "startDate": "2016-8-24",
+        "endDate": "2016-8-26"
+    },
+    {
+        "place": "Boston, MA",
+        "address": "Boston, MA",
+        "name": "Boston, MA",
+        "coordinates": {
+            "lat": 42.3600825,
+            "lng": -71.0588801
+        },
+        "startDate": "2016-8-23",
+        "endDate": "2016-8-24"
+    },
+    {
+        "place": "West Yarmouth, Cape Cod, MA",
+        "name": "Bugga Beach",
+        "startDate": "2016-8-22",
+        "endDate": "2016-8-23"
+    },
+    {
+        "place": "Brookfield, CT",
+        "name": "Home",
+        "startDate": "2016-8-21",
+        "endDate": "2016-8-22"
+    },
+    {
+        "place": "Dry Point, Georgetown, Maine",
+        "address": "Dry Point, Georgetown, ME 04548",
+        "name": "Dry Point",
+        "coordinates": {
+            "lat": 43.8106387,
+            "lng": -69.7158787
+        },
+        "startDate": "2016-8-19",
+        "endDate": "2016-8-21"
+    },
+    {
+        "place": "NYC",
+        "address": "520 E 14th Street, New York, NY 10009",
+        "name": "14th btwn 1st & A, NYC",
+        "coordinates": {
+            "lat": 40.7296989,
+            "lng": -73.97938189999999
+        },
+        "startDate": "2016-8-17",
+        "endDate": "2016-8-19"
+    },
+    {
+        "place": "Boston, MA",
+        "address": "265 Clarendon Street, Boston, MA",
+        "name": "Albert's Apartment",
+        "coordinates": {
+            "lat": 42.3532324,
+            "lng": -71.07620059999999
+        },
+        "startDate": "2016-8-16",
+        "endDate": "2016-8-17"
+    },
+    {
+        "place": "NYC",
+        "name": "14th btwn 1st & A, NYC",
+        "startDate": "2016-8-14",
+        "endDate": "2016-8-16"
+    },
+    {
+        "place": "Brookfield, CT",
+        "name": "Home",
+        "startDate": "2016-8-12",
+        "endDate": "2016-8-14"
+    },
+    {
+        "place": "NYC",
+        "name": "14th btwn 1st & A, NYC",
+        "startDate": "2016-8-9",
+        "endDate": "2016-8-12"
+    },
+    {
+        "place": "Boston, MA",
+        "name": "Boston, MA",
+        "startDate": "2016-8-8",
+        "endDate": "2016-8-9"
+    },
+    {
+        "place": "West Yarmouth, Cape Cod, MA",
+        "name": "Bugga Beach",
+        "startDate": "2016-8-5",
+        "endDate": "2016-8-8"
+    },
+    {
+        "place": "NYC",
+        "name": "14th btwn 1st & A, NYC",
+        "startDate": "2016-7-27",
+        "endDate": "2016-8-5"
+    },
+    {
+        "place": "Indira Gandhi International Airport (Delhi)",
+        "address": "Indira Gandhi International Airport, New Delhi, Delhi 110037, India",
+        "name": "Flight AI101 from Delhi to JFK",
+        "coordinates": {
+            "lat": 28.5494456,
+            "lng": 77.1180861
+        },
+        "startDate": "2016-7-26",
+        "endDate": "2016-7-27"
+    },
+    {
+        "place": "Bombay (Churchgate), India",
+        "address": "Swastik Court Maharshi Karve Road, Churchgate, Mumbai, Maharashtra 400020 India",
+        "coordinates": {
+            "lat": 18.9309424,
+            "lng": 72.82792839999999
+        },
+        "startDate": "2016-7-19",
+        "endDate": "2016-7-26"
+    },
+    {
+        "place": "Newark Airport",
+        "name": "Flight AI144 from Newark to Mumbai",
+        "address": "3 Brewster Rd, Newark, NJ 07114",
+        "coordinates": {
+            "lat": 40.6903824,
+            "lng": -74.17738109999999
+        },
+        "startDate": "2016-7-18",
+        "endDate": "2016-7-19"
+    },
+    {
+        "place": "Brookfield, CT",
+        "name": "Home",
+        "startDate": "2016-7-17",
+        "endDate": "2016-7-18"
+    },
+    {
+        "place": "NYC",
+        "name": "14th btwn 1st & A, NYC",
+        "startDate": "2016-7-10",
+        "endDate": "2016-7-17"
+    },
+    {
+        "place": "Brookfield, CT",
+        "name": "Home",
+        "startDate": "2016-7-9",
+        "endDate": "2016-7-10"
+    },
+    {
+        "place": "Boston, MA",
+        "name": "Boston, MA",
+        "startDate": "2016-7-7",
+        "endDate": "2016-7-9"
+    },
+    {
+        "place": "Vinalhaven, ME",
+        "address": "183 Roberts Cemetery Road, Vinalhaven, ME",
+        "name": "Webster Residence",
+        "coordinates": {
+            "lat": 44.040857,
+            "lng": -68.809883
+        },
+        "startDate": "2016-7-6",
+        "endDate": "2016-7-7"
+    },
+    {
+        "place": "Rockland, ME",
+        "address": "79 Front Street, Rockland Maine 04861",
+        "name": "Cowan Residence",
+        "coordinates": {
+            "lat": 44.1126529,
+            "lng": -69.1045163
+        },
+        "startDate": "2016-7-4",
+        "endDate": "2016-7-6"
+    },
+    {
+        "place": "West Yarmouth, Cape Cod, MA",
+        "name": "Bugga Beach",
+        "startDate": "2016-7-2",
+        "endDate": "2016-7-4"
+    },
+    {
+        "place": "Brookfield, CT",
+        "name": "Home",
+        "startDate": "2016-6-30",
+        "endDate": "2016-7-2"
+    },
+    {
+        "place": "NYC",
+        "address": "139 East 13th Street #2C, New York, NY 10003",
+        "name": "Union Square, NYC",
+        "coordinates": {
+            "lat": 40.7330235,
+            "lng": -73.9881441
+        },
+        "startDate": "2016-6-20",
+        "endDate": "2016-6-30"
+    },
+    {
+        "place": "Mystic, CT (Mason's Island)",
+        "startDate": "2016-6-25",
+        "endDate": "2016-6-25"
+    },
+    {
+        "place": "Brookfield, CT",
+        "name": "Home",
+        "startDate": "2016-6-19",
+        "endDate": "2016-6-20"
+    },
+    {
+        "place": "Block Island, RI",
+        "address": "52 Spring St, New Shoreham, RI 02807",
+        "name": "Spring House, Block Island",
+        "coordinates": {
+            "lat": 41.1679811,
+            "lng": -71.5548469
+        },
+        "startDate": "2016-6-17",
+        "endDate": "2016-6-19"
+    },
+    {
+        "place": "Brookfield, CT",
+        "name": "Home",
+        "startDate": "2016-6-16",
+        "endDate": "2016-6-17"
+    },
+    {
+        "place": "NYC",
+        "name": "Union Square, NYC",
+        "startDate": "2016-6-13",
+        "endDate": "2016-6-16"
+    },
+    {
+        "place": "Brookfield, CT",
+        "name": "Home",
+        "startDate": "2016-6-12",
+        "endDate": "2016-6-13"
+    },
+    {
+        "place": "West Yarmouth, Cape Cod, MA",
+        "name": "Bugga Beach",
+        "startDate": "2016-6-10",
+        "endDate": "2016-6-12"
+    },
+    {
+        "place": "Montauk, Long Island, New York",
+        "startDate": "2016-6-6",
+        "endDate": "2016-6-6"
+    },
+    {
+        "place": "NYC",
+        "name": "Union Square, NYC",
+        "startDate": "2016-5-31",
+        "endDate": "2016-6-10"
+    },
+    {
+        "place": "Brookfield, CT",
+        "name": "Home",
+        "startDate": "2016-5-30",
+        "endDate": "2016-5-31"
+    },
+    {
+        "place": "West Yarmouth, Cape Cod, MA",
+        "name": "Bugga Beach",
+        "startDate": "2016-5-27",
+        "endDate": "2016-5-30"
+    },
+    {
+        "place": "NYC",
+        "name": "Union Square, NYC",
+        "startDate": "2016-5-25",
+        "endDate": "2016-5-27"
+    },
+    {
+        "place": "Brookfield, CT",
+        "name": "Home",
+        "startDate": "2016-5-23",
+        "endDate": "2016-5-25"
+    },
+    {
+        "place": "Bethlehem, PA",
+        "address": "Lehigh University, Bethlehem, PA",
+        "name": "Lehigh University",
+        "coordinates": {
+            "lat": 40.605337,
+            "lng": -75.376463
+        },
+        "startDate": "2016-5-22",
+        "endDate": "2016-5-23"
+    },
+    {
+        "place": "Brookfield, CT",
+        "name": "Home",
+        "startDate": "2016-5-15",
+        "endDate": "2016-5-22"
+    },
+    {
+        "place": "Boston, MA",
+        "name": "Boston, MA",
+        "startDate": "2016-5-14",
+        "endDate": "2016-5-15"
+    },
+    {
+        "place": "NYC",
+        "address": "New York City, NY",
+        "name": "NYC",
+        "complete": "false",
+        "coordinates": {
+            "lat": 40.7127837,
+            "lng": -74.0059413
+        },
+        "startDate": "2016-5-09",
+        "endDate": "2016-5-09"
+    },
+    {
+        "place": "Brookfield, CT",
+        "name": "Home",
+        "startDate": "2016-5-01",
+        "endDate": "2016-5-14"
+    },
+    {
+        "place": "Baltimore, MD",
+        "address": "8513 Countrybrooke Way, Lutherville-Timonium, MD 21093",
+        "name": "Woods Residence",
+        "coordinates": {
+            "lat": 39.426649,
+            "lng": -76.6518
+        },
+        "startDate": "2016-4-29",
+        "endDate": "2016-5-01"
+    },
+    {
+        "place": "Lexington, KY",
+        "address": "422 North Limestone, Lexington, KY 40508",
+        "name": "Chelsea Dickson's Aparatment",
+        "coordinates": {
+            "lat": 38.051227,
+            "lng": -84.48961299999999
+        },
+        "startDate": "2015-03-12",
+        "endDate": "2015-03-17"
+    },
+    {
+        "place": "NYC",
+        "complete": "false",
+        "name": "NYC",
+        "notes": "Rob Truglia, Joe/Nate's, and a third?",
+        "startDate": "2015-03-20",
+        "endDate": "2015-03-22"
+    },
+    {
+        "place": "Brookfield, CT",
+        "name": "Home",
+        "startDate": "2015-03-22",
+        "endDate": "2015-03-27"
+    },
+    {
+        "place": "Malaga, Spain",
+        "address": "Calle Fajardo 2,4c Málaga, Andalusia 29005 Spain",
+        "name": "Oleg's Apartment",
+        "coordinates": {
+            "lat": 36.7212047,
+            "lng": -4.4242448
+        },
+        "startDate": "2015-03-28",
+        "endDate": "2015-04-06"
+    },
+    {
+        "place": "Seville, Spain",
+        "address": "Calle Almirante Ulloa, 1, 41001 Sevilla, Spain",
+        "name": "Seville, Spain",
+        "coordinates": {
+            "lat": 37.39266,
+            "lng": -5.998483999999999
+        },
+        "startDate": "2015-04-06",
+        "endDate": "2015-04-12"
+    },
+    {
+        "place": "Jerez de la Frontera, Spain",
+        "address": "Calle Higueras, 17 11402 Jerez de la Frontera Cádiz Spain",
+        "name": "Jerez de la Frontera, Spain",
+        "coordinates": {
+            "lat": 36.6819475,
+            "lng": -6.1333492
+        },
+        "startDate": "2015-04-12",
+        "endDate": "2015-04-14"
+    },
+    {
+        "place": "Cadiz, Spain",
+        "address": "Cadiz, Spain",
+        "name": "Cadiz, Spain",
+        "notes": "With Jemima",
+        "complete": "false",
+        "coordinates": {
+            "lat": 36.5270612,
+            "lng": -6.2885962
+        },
+        "startDate": "2015-04-14",
+        "endDate": "2015-04-15"
+    },
+    {
+        "place": "Chiclana, Spain",
+        "address": "Chiclana, Spain",
+        "name": "Chiclana, Spain",
+        "notes": "Spent the day with Jemima",
+        "startDate": "2015-04-15",
+        "endDate": "2015-04-15"
+    },
+    {
+        "place": "Tarifa, Spain",
+        "address": "Calle Turriano Grácil, 5 11380, Tarifa, Cádiz, Spain",
+        "name": "Tarifa, Spain",
+        "coordinates": {
+            "lat": 36.0126769,
+            "lng": -5.6060859
+        },
+        "startDate": "2015-04-15",
+        "endDate": "2015-04-17"
+    },
+    {
+        "place": "Tetouan, Morocco",
+        "address": "Aziman 4, Tetouan, Morocco",
+        "name": "Riad Aziman, Tetouan, Morocco",
+        "coordinates": {
+            "lat": 35.5888995,
+            "lng": -5.3625516
+        },
+        "startDate": "2015-04-17",
+        "endDate": "2015-04-19"
+    },
+    {
+        "place": "Chefchaouen, Morocco",
+        "address": "Rue Ibn Asskar, Chefchaouen, Tanger-Tétouan, Morocco",
+        "name": "Chefchaouen, Morocco",
+        "coordinates": {
+            "lat": 35.16983099999999,
+            "lng": -5.2596789
+        },
+        "startDate": "2015-04-19",
+        "endDate": "2015-04-21"
+    },
+    {
+        "place": "Fes, Morocco",
+        "address": "Arset Lamdelssi, 60 - Bab Jdid, Fes, Morocco",
+        "name": "Fes, Morocco",
+        "coordinates": {
+            "lat": 34.0181246,
+            "lng": -5.0078451
+        },
+        "startDate": "2015-04-21",
+        "endDate": "2015-04-22"
+    },
+    {
+        "place": "Rabat, Morocco",
+        "address": "12 Rue Benacer Lakrari, Rabat, Morocco",
+        "name": "Rabat, Morocco",
+        "coordinates": {
+            "lat": 33.9715904,
+            "lng": -6.8498129
+        },
+        "startDate": "2015-04-22",
+        "endDate": "2015-04-24"
+    },
+    {
+        "place": "Marrakech, Morocco",
+        "address": "Riad Zitoune Jdid, Derb Zenka Dika, no. 40 Marrakech, Morocco",
+        "name": "Marrakech, Morocco",
+        "coordinates": {
+            "lat": 31.6294723,
+            "lng": -7.981084500000001
+        },
+        "complete": "false",
+        "notes": "Include desert trip",
+        "startDate": "2015-04-24",
+        "endDate": "2015-04-29"
+    },
+    {
+        "place": "Ferndorf, Austria",
+        "address": "Ferndorf, Austria",
+        "name": "Josh & Monika's, Ferndorf, Austria",
+        "complete": "false",
+        "coordinates": {
+            "lat": 46.7362831,
+            "lng": 13.6265947
+        },
+        "startDate": "2015-04-29",
+        "endDate": "2015-05-07"
+    },
+    {
+        "place": "Drausendorf, Germany",
+        "address": "Dorfstraße 18, D-02788 Drausendorf, Zittau, Germany",
+        "name": "Anna Catarina's, Drausendorf, Germany",
+        "coordinates": {
+            "lat": 50.9219678,
+            "lng": 14.8651313
+        },
+        "startDate": "2015-05-07",
+        "endDate": "2015-05-18"
+    },
+    {
+        "place": "Dresden, Germany",
+        "address": "Maxstraße 1, 01067, Dresden, Germany",
+        "name": "Moritz's, Dresden, Germany",
+        "coordinates": {
+            "lat": 51.0566006,
+            "lng": 13.7280132
+        },
+        "startDate": "2015-05-18",
+        "endDate": "2015-05-21"
+    },
+    {
+        "place": "Munich, Germany",
+        "address": "Munich, Germany",
+        "name": "Munich, Germany",
+        "completed": "false",
+        "notes": "Stayed in a hotel & AirBNB with John",
+        "coordinates": {
+            "lat": 48.1351253,
+            "lng": 11.5819806
+        },
+        "startDate": "2015-05-21",
+        "endDate": "2015-05-26"
+    },
+    {
+        "place": "Copenhagen, Denmark",
+        "address": "Copenhagen, Denmark",
+        "name": "Copenhagen, Denmark",
+        "complete": "false",
+        "notes": "Stayed in two hostels over the period",
+        "coordinates": {
+            "lat": 55.6760968,
+            "lng": 12.5683371
+        },
+        "startDate": "2015-05-26",
+        "endDate": "2015-05-29"
+    },
+    {
+        "place": "Aarhus, Denmark",
+        "address": "Aarhus, Denmark",
+        "name": "Aarhus, Denmark",
+        "complete": "false",
+        "notes": "Stayed at Helmig son's place",
+        "coordinates": {
+            "lat": 56.162939,
+            "lng": 10.203921
+        },
+        "startDate": "2015-05-29",
+        "endDate": "2015-05-31"
+    },
+    {
+        "place": "Copenhagen, Denmark",
+        "address": "Copenhagen, Denmark",
+        "name": "Copenhagen, Denmark",
+        "complete": "false",
+        "startDate": "2015-05-31",
+        "endDate": "2015-06-02"
+    },
+    {
+        "place": "Malmö, Sweden",
+        "address": "Malmö, Sweden",
+        "name": "Malmö, Sweden",
+        "complete": "false",
+        "notes": "Flight delayed, put us up in hotel.",
+        "coordinates": {
+            "lat": 55.604981,
+            "lng": 13.003822
+        },
+        "startDate": "2015-06-02",
+        "endDate": "2015-06-03"
+    },
+    {
+        "place": "Florence, Italy",
+        "address": "Via Porta Rossa, 19, 50123 Firenze, Italy",
+        "name": "Porta Rossa Hotel, Florence, Italy",
+        "coordinates": {
+            "lat": 43.7701676,
+            "lng": 11.2546468
+        },
+        "startDate": "2015-06-03",
+        "endDate": "2015-06-06"
+    },
+    {
+        "place": "Rome, Italy",
+        "address": "Rome, Italy",
+        "name": "Rome, Italy",
+        "coordinates": {
+            "lat": 41.9027835,
+            "lng": 12.4963655
+        },
+        "startDate": "2015-06-06",
+        "endDate": "2015-06-09"
+    },
+    {
+        "place": "Split, Croatia",
+        "address": "Ul. Ljudevita Gaja 9A 21000, Split Croatia",
+        "name": "Split, Croatia",
+        "startDate": "2015-06-10",
+        "endDate": "2015-06-10"
+    },
+    {
+        "place": "Zadar, Croatia",
+        "address": "Zadar, Croatia",
+        "name": "Zadar, Croatia",
+        "complete": "false",
+        "coordinates": {
+            "lat": 44.119371,
+            "lng": 15.2313648
+        },
+        "startDate": "2015-06-11",
+        "endDate": "2015-06-13"
+    },
+    {
+        "place": "Pula, Croatia",
+        "address": "Pula, Croatia",
+        "name": "Pula, Croatia",
+        "complete": "false",
+        "coordinates": {
+            "lat": 44.8666232,
+            "lng": 13.8495788
+        },
+        "startDate": "2015-06-13",
+        "endDate": "2015-06-15"
+    },
+    {
+        "place": "Zagreb, Croatia",
+        "address": "Zagreb, Croatia",
+        "name": "Zagreb, Croatia",
+        "complete": "false",
+        "coordinates": {
+            "lat": 45.8150108,
+            "lng": 15.981919
+        },
+        "startDate": "2015-06-15",
+        "endDate": "2015-06-17"
+    },
+    {
+        "place": "Split, Croatia",
+        "address": "Split, Coatia",
+        "name": "Split, Coatia",
+        "complete": "false",
+        "coordinates": {
+            "lat": 43.5081323,
+            "lng": 16.4401935
+        },
+        "startDate": "2015-06-17",
+        "endDate": "2015-06-18"
+    },
+    {
+        "place": "Hvar, Croatia",
+        "address": "Stjepana Papafave 6, 21450, Hvar, Croatia",
+        "name": "Hvar, Croatia",
+        "notes": "The White Rabbit Hostel",
+        "coordinates": {
+            "lat": 43.1724048,
+            "lng": 16.4428876
+        },
+        "startDate": "2015-06-18",
+        "endDate": "2015-06-22"
+    },
+    {
+        "place": "Dubrovnik, Croatia",
+        "address": "Mostarska ul. 2D, 20000, Dubrovnik, Croatia",
+        "name": "Dubrovnik, Croatia",
+        "coordinates": {
+            "lat": 42.6588571,
+            "lng": 18.0737859
+        },
+        "startDate": "2015-06-22",
+        "endDate": "2015-06-24"
+    },
+    {
+        "place": "Rvaši, Cetinje, Montenegro",
+        "address": "Rvaši, Cetinje, Montenegro",
+        "name": "Rvaši, Cetinje, Montenegro",
+        "complete": "false",
+        "notes": "Find actual address of stone house. Week of solitude.",
+        "coordinates": {
+            "lat": 42.3716223,
+            "lng": 19.102537
+        },
+        "startDate": "2015-06-24",
+        "endDate": "2015-06-30"
+    },
+    {
+        "place": "Kotor, Montenegro",
+        "address": "284, Kotor 85330, Montenegro",
+        "name": "Kotor, Montenegro",
+        "coordinates": {
+            "lat": 42.4940653,
+            "lng": 18.6514539
+        },
+        "startDate": "2015-06-30",
+        "endDate": "2015-07-03"
+    },
+    {
+        "place": "Tirana, Albania",
+        "address": "Tirana, Albania",
+        "name": "Matraxhiu Residence",
+        "complete": "false",
+        "coordinates": {
+            "lat": 41.3275459,
+            "lng": 19.8186982
+        },
+        "startDate": "2015-07-03",
+        "endDate": "2015-07-07"
+    },
+    {
+        "place": "Himarë, Albania",
+        "address": "SH8, Himarë, Albania",
+        "name": "Himarë, Albania",
+        "coordinates": {
+            "lat": 40.0995869,
+            "lng": 19.7517196
+        },
+        "startDate": "2015-07-07",
+        "endDate": "2015-07-09"
+    },
+    {
+        "place": "Tirana, Albania",
+        "name": "Matraxhiu Residence",
+        "startDate": "2015-07-09",
+        "endDate": "2015-07-10"
+    },
+    {
+        "place": "Kadıköy, İstanbul, Turkey",
+        "address": "Mühürdar Cd. No:5069, Caferağa 34710, Kadıköy/İstanbul, Turkey",
+        "name": "Kadıköy, İstanbul, Turkey",
+        "coordinates": {
+            "lat": 40.9873929,
+            "lng": 29.0215487
+        },
+        "startDate": "2015-07-10",
+        "endDate": "2015-07-25"
+    },
+    {
+        "place": "Geneva, Switzerland",
+        "address": "Geneva, Switzerland",
+        "name": "Geneva, Switzerland",
+        "complete": "false",
+        "notes": "Marvi's dorm",
+        "coordinates": {
+            "lat": 46.2043907,
+            "lng": 6.1431577
+        },
+        "startDate": "2015-07-25",
+        "endDate": "2015-07-29"
+    },
+    {
+        "place": "Lausanne, Switzerland",
+        "address": "Chemin des Epinettes 4, Lausanne Switzerland",
+        "name": "Lausanne, Switzerland",
+        "coordinates": {
+            "lat": 46.5172039,
+            "lng": 6.6255938
+        },
+        "startDate": "2015-07-29",
+        "endDate": "2015-08-01"
+    },
+    {
+        "place": "Paris, France",
+        "address": "22 Rue Saint-Sauveur bat a Paris, Île-de-France 75002 France",
+        "name": "Paris, France",
+        "coordinates": {
+            "lat": 48.8662309,
+            "lng": 2.3479756
+        },
+        "startDate": "2015-08-01",
+        "endDate": "2015-08-07"
+    },
+    {
+        "place": "Reykjavík, Iceland",
+        "address": "Laugavegur 56, Reykjavík, Iceland",
+        "name": "Reykjavík, Iceland",
+        "coordinates": {
+            "lat": 64.14444689999999,
+            "lng": -21.922921
+        },
+        "startDate": "2015-08-07",
+        "endDate": "2015-08-09"
+    },
+    {
+        "place": "Bolungarvik, Iceland",
+        "address": "Bolungarvik, Iceland",
+        "name": "Bolungarvik, Iceland",
+        "coordinates": {
+            "lat": 66.162120, 
+            "lng": -23.248504
+        },
+        "startDate": "2015-08-09",
+        "endDate": "2015-08-10"
+    },
+    {
+        "place": "Akureyri, Iceland",
+        "address": "Þingvallastræti 2, Akureyri, Iceland",
+        "name": "Akureyri, Iceland",
+        "coordinates": {
+            "lat": 65.6793914,
+            "lng": -18.1005686
+        },
+        "startDate": "2015-08-10",
+        "endDate": "2015-08-11"
+    },
+    {
+        "place": "Djúpavogshreppur, Austurland, Iceland",
+        "address": "Djúpavogshreppur, Austurland, Iceland",
+        "name": "Djúpavogshreppur, Austurland, Iceland",
+        "coordinates": {
+            "lat": 64.494481, 
+            "lng": -14.472060
+        },
+        "startDate": "2015-08-11",
+        "endDate": "2015-08-12"
+    },
+    {
+        "place": "Laugarvatn, Iceland",
+        "address": "Laugarvatn, South 840 Iceland",
+        "name": "Laugarvatn, Iceland",
+        "coordinates": {
+            "lat": 64.2177261,
+            "lng": -20.7320742
+        },
+        "startDate": "2015-08-12",
+        "endDate": "2015-08-13"
+    },
+    {
+        "place": "Kirkmuirhill, Lanark, Scotland",
+        "address": "41 The Lairs, Kirkmuirhill, Lanark, ML11 9YW, UK",
+        "name": "Kirkmuirhill, Lanark, Scotland",
+        "coordinates": {
+            "lat": 55.6760293,
+            "lng": -3.923851
+        },
+        "startDate": "2015-08-14",
+        "endDate": "2015-08-15"
+    },
+    {
+        "place": "The Balfour Manor, Tomintoul, Scotland",
+        "address": "2 The Square, Tomintoul, Ballindalloch AB37 9ET, UK",
+        "name": "Tomintoul, Scotland",
+        "coordinates": {
+            "lat": 57.2513051,
+            "lng": -3.3792323
+        },
+        "startDate": "2015-08-15",
+        "endDate": "2015-08-16"
+    },
+    {
+        "place": "Glenmorangie House, Tain, Scotland",
+        "address": "Fearn by Tain, Tain IV20 1XP, UK",
+        "name": "Glenmorangie House",
+        "coordinates": {
+            "lat": 57.7732796,
+            "lng": -3.8998544
+        },
+        "startDate": "2015-08-16",
+        "endDate": "2015-08-18"
+    },
+    {
+        "place": "Plockton, Scotland",
+        "address": "39 Harbour St, Plockton IV52 8TN, UK",
+        "name": "Plockton, Scotland",
+        "coordinates": {
+            "lat": 57.33863909999999,
+            "lng": -5.651425199999999
+        },
+        "startDate": "2015-08-18",
+        "endDate": "2015-08-19"
+    },
+    {
+        "place": "Portree, Scotland",
+        "address": "The Old Post Office, The Green, Portree IV51 9BT, UK",
+        "name": "Portree, Scotland",
+        "coordinates": {
+            "lat": 57.4125991,
+            "lng": -6.1946621
+        },
+        "startDate": "2015-08-19",
+        "endDate": "2015-08-20"
+    },
+    {
+        "place": "Edinburgh, Scotland",
+        "address": "14/3 George IV Bridge, Edinburgh EH1 1EE, United Kingdom",
+        "name": "Edinburgh, Scotland",
+        "coordinates": {
+            "lat": 55.9479597,
+            "lng": -3.1921432
+        },
+        "startDate": "2015-08-20",
+        "endDate": "2015-08-23"
+    },
+    {
+        "place": "Ballycastle, Northern Ireland",
+        "address": "Ballycastle, Northern Ireland",
+        "name": "Ballycastle, Northern Ireland",
+        "complete": "false",
+        "notes": "Rauri Morgan's place",
+        "coordinates": {
+            "lat": 55.2052888,
+            "lng": -6.2532947
+        },
+        "startDate": "2015-08-23",
+        "endDate": "2015-08-26"
+    },
+    {
+        "place": "Rathlin Island",
+        "address": "Ballygill, Rathlin Island, Antrim N. Ireland BT546RT",
+        "name": "Rathlin Island",
+        "coordinates": {
+            "lat": 55.297772, 
+            "lng": -6.206880
+        },
+        "startDate": "2015-08-26",
+        "endDate": "2015-09-06"
+    },
+    {
+        "place": "Belfast, Northern Ireland",
+        "address": "Belfast, Northern Ireland",
+        "name": "Belfast, Northern Ireland",
+        "complete": "false",
+        "notes": "Stayed at Blake's place.",
+        "coordinates": {
+            "lat": 54.59728500000001,
+            "lng": -5.93012
+        },
+        "startDate": "2015-09-06",
+        "endDate": "2015-09-09"
+    },
+    {
+        "place": "Dublin, Ireland",
+        "address": "2-4 Litton Ln, North City, Dublin 1, Ireland",
+        "name": "Dublin, Ireland",
+        "coordinates": {
+            "lat": 53.347551,
+            "lng": -6.2612738
+        },
+        "startDate": "2015-09-09",
+        "endDate": "2015-09-11"
+    },
+    {
+        "place": "London, England",
+        "address": "London, England",
+        "name": "London, England",
+        "complete": "false",
+        "notes": "Moved all around London",
+        "coordinates": {
+            "lat": 51.5073509,
+            "lng": -0.1277583
+        },
+        "startDate": "2015-09-11",
+        "endDate": "2015-09-21"
+    },
+    {
+        "place": "Amsterdam, Netherlands",
+        "address": "Nieuwezijds Voorburgwal 67, 1012 RE Amsterdam, Netherlands",
+        "name": "INK Hotel, Amsterdam, Netherlands",
+        "coordinates": {
+            "lat": 52.3754912,
+            "lng": 4.8929871
+        },
+        "startDate": "2015-09-21",
+        "endDate": "2015-09-27"
+    },
+    {
+        "place": "Akabanenishi, Tokyo, Japan",
+        "address": "3 Chome-18-9 Akabanenishi, Kita-ku, Tōkyō-to 115-0055, Japan",
+        "name": "John & Testsu Residence",
+        "coordinates": {
+            "lat": 35.7691686,
+            "lng": 139.7181451
+        },
+        "startDate": "2015-09-28",
+        "endDate": "2015-10-02"
+    },
+    {
+        "place": "Kabuki, Tokyo, Japan",
+        "address": "Japan, 〒111-0032 Tōkyō-to, Taitō-ku, Asakusa, 1 Chome−17, 浅草１−１７−２",
+        "name": "Kabuki, Tokyo, Japan",
+        "coordinates": {
+            "lat": 35.7170572,
+            "lng": 139.7944865
+        },
+        "startDate": "2015-10-02",
+        "endDate": "2015-10-05"
+    },
+    {
+        "place": "Takadanobaba, Tokyo, Japan",
+        "address": "1 Chome-31-8 Takadanobaba, #307, Shinjuku-ku, Tōkyō-to 169-0075 Japan",
+        "name": "Mariko's Residence",
+        "coordinates": {
+            "lat": 35.7099883,
+            "lng": 139.703257
+        },
+        "startDate": "2015-10-05",
+        "endDate": "2015-10-06"
+    },
+    {
+        "place": "Tokamachi, Niigata, Japan",
+        "address": "Tsuike, Tokamachi, Niigata Prefecture 948-0016 Japan",
+        "name": "Tokamachi, Niigata, Japan",
+        "coordinates": {
+            "lat": 37.1251803,
+            "lng": 138.8013671
+        },
+        "startDate": "2015-10-07",
+        "endDate": "2015-10-14"
+    },
+    {
+        "place": "Murayama, Yamagata, Japan",
+        "address": "2 Chome-2-1 Tateokatsurugachō, Murayama-shi, Yamagata-ken 995-0014",
+        "name": "Murayama, Yamagata, Japan",
+        "coordinates": {
+            "lat": 38.4884046,
+            "lng": 140.391443
+        },
+        "startDate": "2015-10-14",
+        "endDate": "2015-10-21"
+    },
+    {
+        "place": "Kitakami, Iwate, Japan",
+        "address": "171 Kitakami-shi, Waga-cho, Iwasakishinden, Yamato, Iwate Prefecture 028 Japan",
+        "name": "Kitakami, Iwate, Japan",
+        "coordinates": {
+            "lat": 39.2614367,
+            "lng": 141.0119831
+        },
+        "startDate": "2015-10-21",
+        "endDate": "2015-10-28"
+    },
+    {
+        "place": "Ferry Terminal, Aomori, Japan",
+        "address": "Aomori, Japan",
+        "name": "Ferry from Aomori to Hokkaido",
+        "complete": "false",
+        "notes": "Overnight ferry. Need to find port.",
+        "coordinates": {
+            "lat": 40.822072,
+            "lng": 140.7473647
+        },
+        "startDate": "2015-10-28",
+        "endDate": "2015-10-29"
+    },
+    {
+        "place": "Sapporo, Hokkaido, Japan",
+        "address": "2 Chome-2-10 Minami 7 Jōnishi, Chūō-ku, Sapporo-shi, Hokkaidō 064-0807 Japan",
+        "name": "Sapporo, Hokkaido, Japan",
+        "coordinates": {
+            "lat": 43.051786,
+            "lng": 141.3565795
+        },
+        "startDate": "2015-10-29",
+        "endDate": "2015-11-02"
+    },
+    {
+        "place": "Okinawa, Japan",
+        "address": "431-3 Toya, Yomitan-son, Nakagami-gun, Okinawa-ken 904-0305, Japan",
+        "name": "Happy Surfing Guest House, Okinawa, Japan",
+        "coordinates": {
+            "lat": 26.3881893,
+            "lng": 127.7254536
+        },
+        "startDate": "2015-11-02",
+        "endDate": "2015-11-05"
+    },
+    {
+        "place": "Yomitan-son, Okinawa, Japan",
+        "address": "1794 Nagahama, Yomitan-son, Nakagami-gun, Okinawa-ken 904-0324, Japan",
+        "name": "Yomitan-son, Okinawa, Japan",
+        "coordinates": {
+            "lat": 26.4139284,
+            "lng": 127.734455
+        },
+        "startDate": "2015-11-05",
+        "endDate": "2015-11-08"
+    },
+    {
+        "place": "Kouri Island, Okinawa, Japan",
+        "address": "Kouri Island, Okinawa, Japan",
+        "name": "Kouri Island, Okinawa, Japan",
+        "coordinates": {
+            "lat": 26.700928,
+            "lng": 128.027042
+        },
+        "startDate": "2015-11-08",
+        "endDate": "2015-11-10"
+    },
+    {
+        "place": "Kyoto, Japan",
+        "address": "Japan, 〒604-0924 Kyōto-fu, Kyōto-shi, Nakagyō-ku, Ichinofunairichō, 537−31, リベルタス御池",
+        "name": "Kyoto, Japan",
+        "coordinates": {
+            "lat": 35.0113392,
+            "lng": 135.7699079
+        },
+        "startDate": "2015-11-10",
+        "endDate": "2015-11-13"
+    },
+    {
+        "place": "Tachikawa, Tokyo, Japan",
+        "address": "Tachikawa, Tokyo, Japan",
+        "name": "Hayafuji-san Residence",
+        "coordinates": {
+            "lat": 35.723508,
+            "lng": 139.414762
+        },
+        "startDate": "2015-11-13",
+        "endDate": "2015-11-15"
+    },
+    {
+        "place": "Shibuya, Tokyo, Japan",
+        "address": "7-15 Uguisudanichō, Shibuya-ku, Tōkyō-to 150-0032 Japan",
+        "name": "Shibuya, Tokyo, Japan",
+        "coordinates": {
+            "lat": 35.6538366,
+            "lng": 139.7023982
+        },
+        "startDate": "2015-11-15",
+        "endDate": "2015-11-18"
+    },
+    {
+        "place": "Akabanenishi, Tokyo, Japan",
+        "name": "John & Testsu Residence",
+        "startDate": "2015-11-18",
+        "endDate": "2015-11-20"
+    },
+    {
+        "place": "Brookfield, CT",
+        "name": "Home",
+        "startDate": "2015-11-20",
+        "endDate": "2015-12-03"
+    },
+    {
+        "place": "Boston, MA",
+        "name": "Boston, MA",
+        "startDate": "2015-12-02",
+        "endDate": "2015-12-02"
+    },
+    {
+        "place": "Bethlehem, PA",
+        "name": "Lehigh University",
+        "startDate": "2015-12-03",
+        "endDate": "2015-12-06"
+    },
+    {
+        "place": "NYC",
+        "name": "NYC",
+        "complete": "false",
+        "startDate": "2015-12-06",
+        "endDate": "2015-12-06"
+    },
+    {
+        "place": "Brookfield, CT",
+        "name": "Home",
+        "startDate": "2015-12-06",
+        "endDate": "2015-12-10"
+    },
+    {
+        "place": "Boston, MA",
+        "name": "Boston, MA",
+        "complete": "false",
+        "startDate": "2015-12-10",
+        "endDate": "2015-12-13"
+    },
+    {
+        "place": "West Yarmouth, Cape Cod, MA",
+        "name": "Bugga Beach",
+        "startDate": "2015-12-13",
+        "endDate": "2015-12-15"
+    },
+    {
+        "place": "Brookfield, CT",
+        "name": "Home",
+        "startDate": "2015-12-15",
+        "endDate": "2015-12-30"
+    },
+    {
+        "place": "Boston, MA",
+        "name": "Boston, MA",
+        "complete": "false",
+        "startDate": "2015-12-30",
+        "endDate": "2015-12-31"
+    },
+    {
+        "place": "Bethlehem, NH",
+        "address": "Bethlehem, NH",
+        "complete": "false",
+        "name": "Bethlehem, NH",
+        "coordinates": {
+            "lat": 44.2803843,
+            "lng": -71.6875364
+        },
+        "startDate": "2015-12-31",
+        "endDate": "2016-01-01"
+    },
+    {
+        "place": "Portsmouth, NH",
+        "address": "Portsmouth, NH",
+        "name": "Portsmouth, NH",
+        "complete": "false",
+        "notes": "Marissa's house",
+        "coordinates": {
+            "lat": 43.0717552,
+            "lng": -70.7625532
+        },
+        "startDate": "2016-01-01",
+        "endDate": "2016-01-02"
+    },
+    {
+        "place": "West Yarmouth",
+        "name": "Bugga Beach",
+        "startDate": "2016-01-02",
+        "endDate": "2016-01-04"
+    },
+    {
+        "place": "Boston, MA",
+        "name": "Boston, MA",
+        "complete": "false",
+        "startDate": "2016-01-04",
+        "endDate": "2016-01-05"
+    },
+    {
+        "place": "Brookfield, CT",
+        "name": "Home",
+        "startDate": "2016-01-05",
+        "endDate": "2016-01-08"
+    },
+    {
+        "place": "NYC",
+        "name": "NYC",
+        "complete": "false",
+        "startDate": "2016-01-08",
+        "endDate": "2016-01-10"
+    },
+    {
+        "place": "Brookfield, CT",
+        "name": "Home",
+        "startDate": "2016-01-10",
+        "endDate": "2016-01-15"
+    },
+    {
+        "place": "Charlotte, NC",
+        "address": "412 North Davidson Street, Charlotte, NC",
+        "name": "Charlotte, NC",
+        "coordinates": {
+            "lat": 35.2256349,
+            "lng": -80.833851
+        },
+        "startDate": "2016-01-15",
+        "endDate": "2016-02-13"
+    },
+    {
+        "place": "Charleston, SC",
+        "address": "225 E Bay St, Charleston, SC 29401",
+        "name": "Market Pavilion Hotel, Charleston, SC",
+        "coordinates": {
+            "lat": 32.78083,
+            "lng": -79.9276775
+        },
+        "startDate": "2016-02-13",
+        "endDate": "2016-02-15"
+    },
+    {
+        "place": "Charlotte, NC",
+        "name": "Charlotte, NC",
+        "startDate": "2016-02-15",
+        "endDate": "2016-02-20"
+    },
+    {
+        "place": "NYC",
+        "name": "NYC",
+        "complete": "false",
+        "startDate": "2016-02-20",
+        "endDate": "2016-02-21"
+    },
+    {
+        "place": "Brookfield, CT",
+        "name": "Home",
+        "startDate": "2016-02-21",
+        "endDate": "2016-02-25"
+    },
+    {
+        "place": "Kelowna, BC, Canada",
+        "address": "783 Burne Avenue, Kelowna, BC V1Y 5P6 Canada",
+        "name": "Kelowna, BC, Canada",
+        "coordinates": {
+            "lat": 49.87707409999999,
+            "lng": -119.4858444
+        },
+        "startDate": "2016-02-25",
+        "endDate": "2016-02-27"
+    },
+    {
+        "place": "Revelstoke, British Columbia",
+        "address": "2950 Camozzi Rd, Revelstoke, BC V0E 2S0, Canada",
+        "name": "The Sutton Place Hotel, Revelstoke, British Columbia",
+        "coordinates": {
+            "lat": 50.9581531,
+            "lng": -118.1627928
+        },
+        "startDate": "2016-02-27",
+        "endDate": "2016-03-05"
+    },
+    {
+        "place": "NYC",
+        "name": "NYC",
+        "complete": "false",
+        "startDate": "2016-03-05",
+        "endDate": "2016-03-06"
+    },
+    {
+        "place": "Brookfield, CT",
+        "name": "Home",
+        "startDate": "2016-03-06",
+        "endDate": "2016-03-08"
+    },
+    {
+        "place": "Charlotte, NC",
+        "name": "Charlotte, NC",
+        "startDate": "2016-03-08",
+        "endDate": "2016-04-29"
+    }
+]
