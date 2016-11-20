@@ -1,5 +1,6 @@
 var PianoTeacher = PianoTeacher || function(config) {
     this.setupAudio();
+    this.setupMicrophone();
     this.setupIntervals();
     this.setupChords();
     this.renderPiano(config);
@@ -13,6 +14,92 @@ PianoTeacher.prototype.renderPiano = function(config) {
 PianoTeacher.prototype.setupAudio = function(config) {
     this.audio = {};
     this.audio.context = new AudioContext();
+}
+
+// Thank you https://github.com/jbergknoff/guitar-tuner/blob/master/index.html
+PianoTeacher.prototype.setupMicrophone = function(config) {
+    var PT = this;
+
+    this.microphone = {};
+    this.microphone.C2 = 65.41;
+    this.microphone.notes = [ "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B" ]; 
+    this.microphone.testFrequencies = [];
+    for(var i=0; i<30; i++) {
+        var noteFrequency = this.microphone.C2 * Math.pow(2, i / 12);
+        var noteName = this.microphone.notes[i % 12];
+        var note = {
+            frequency: noteFrequency,
+            name: noteName
+        }
+        this.microphone.testFrequencies.push(note);
+    }
+
+    this.microphone.useMicrophone = function(stream) {
+        PT.microphone.context = new AudioContext();
+        PT.microphone.microphone = PT.microphone.context.createMediaStreamSource(stream);
+        PT.microphone.scriptProcessor = PT.microphone.context.createScriptProcessor(1024, 1, 1);
+
+        PT.microphone.correlationWorker = new Worker('CorrelationWorker.js');
+        PT.microphone.correlationWorker.addEventListener('message', PT.microphone.interpretCorrelationResult);
+
+        PT.microphone.scriptProcessor.connect(PT.microphone.context.destination);
+        PT.microphone.microphone.connect(PT.microphone.scriptProcessor);
+
+        PT.microphone.buffer = [];
+        PT.microphone.sampleLength = 100;
+        PT.microphone.recording = true;
+
+        window.capture_audio = function(event) {
+            if(!PT.microphone.recording)
+                return;
+
+            PT.microphone.buffer = PT.microphone.buffer.concat(Array.prototype.slice.call(event.inputBuffer.getChannelData(0)));
+
+            if(PT.microphone.buffer.length > PT.microphone.sampleLength * PT.microphone.context.sampleRate / 1000) {
+                PT.microphone.recording = false;
+
+                PT.microphone.correlationWorker.postMessage({
+                    timeseries: PT.microphone.buffer,
+                    testFrequencies: PT.microphone.testFrequencies,
+                    sampleRate: PT.microphone.context.sampleRate
+                });
+
+                PT.microphone.buffer = [];
+                setTimeout(function() { PT.microphone.recording = true; }, 250);
+            }
+        }
+
+        PT.microphone.scriptProcessor.onaudioprocess = window.capture_audio;
+    }
+
+    this.microphone.interpretCorrelationResult = function(event) {
+        var timeseries = event.data.timeseries;
+        var frequencyAmplitudes = event.data.frequencyAmplitudes;
+
+        var magnitudes = frequencyAmplitudes.map(function(z) {
+            return z[0] * z[0] + z[1] * z[1];
+        });
+
+        var maxIndex = -1;
+        var maxMagnitude = 0;
+        for(var i=0; i<magnitudes.length; i++) {
+            if(magnitudes[i] <= maxMagnitude)
+                continue;
+            maxIndex = i;
+            maxMagnitude = magnitudes[i];
+        }
+
+        var average = magnitudes.reduce(function(a, b) {
+            return a+ b;
+        }, 0) / magnitudes.length;
+        var confidence = maxMagnitude / average;
+        var confidenceThreshold = 10;
+        if(confidence > confidenceThreshold) {
+            var dominantFrequency = PT.microphone.testFrequencies[maxIndex];
+        }
+    }
+
+    navigator.getUserMedia.call(navigator, {"audio": true}, this.microphone.useMicrophone, function() {});
 }
 
 PianoTeacher.prototype.setupSVG = function(config) {
