@@ -11,6 +11,6 @@ window.onload = function() {
 
     pt.testIntervals({
         groups: ["third", "fourth", "fifth"],
-        types: ["Major", "Minor", "Perfect"]
+        types: ["Major", "Minor", "Perfect", "Augmented"]
     });
 }
