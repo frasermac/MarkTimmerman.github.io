@@ -12,7 +12,7 @@ PianoTeacher.prototype.renderPiano = function(config) {
 
 PianoTeacher.prototype.setupAudio = function(config) {
     this.audio = {};
-    this.audio.context = new webkitAudioContext();
+    this.audio.context = new AudioContext();
 }
 
 PianoTeacher.prototype.setupSVG = function(config) {
@@ -195,7 +195,7 @@ PianoTeacher.prototype.applyKeyListeners = function(config) {
         });
 
         key.rect.on('mouseout', function() {
-            key.stop();
+            key.stopOscillator();
         });
 
         key.rect.on('click', function() {
@@ -314,9 +314,13 @@ PianoTeacher.prototype.setupKeys = function(config) {
                 }, duration);
         }
 
-        key.stop = function() {
+        key.stop = function(preventRecolor) {
             key.rect
                 .attr('fill', key.color);
+            key.stopOscillator();
+        }
+
+        key.stopOscillator = function() {
             if(key.oscillator)
                 key.oscillator.stop();
         }
@@ -445,18 +449,62 @@ PianoTeacher.prototype.setupIntervals = function() {
     });
 }
 
+PianoTeacher.prototype.setupChords = function() {
+    var PT = this;
+
+    this.chords = {
+        "Major Triad": {
+            name: "Major Triad",
+            type: "Major",
+            group: "triad",
+            intervals: [
+                "M3", "P5"
+            ]
+        },
+        "Minor Triad": {
+            name: "Minor Triad",
+            type: "Minor",
+            group: "triad",
+            intervals: [
+                "m3", "P5"
+            ]
+        },
+        "Augmented Triad": {
+            name: "Augmented Triad",
+            type: "Augmented",
+            group: "triad",
+            intervals: [
+                "M3", "A5"
+            ]
+        },
+        "Diminished Triad": {
+            name: "Diminished Triad",
+            type: "Diminished",
+            group: "triad",
+            intervals: [
+                "m3", "D5"
+            ]
+        }
+    };
+
+    var chordKeys = Object.keys(this.chords);
+
+    chordKeys.forEach(function(k) {
+        PT.chords[k].intervals.forEach(function(interval, i) {
+            PT.chords[k].intervals[i] = PT.intervals[interval];
+        });
+    });
+}
+
 PianoTeacher.prototype.testIntervals = function(config) {
     var PT = this;
+    delete this.test;
 
     this.test = {
         groups: config && config.groups || null,
         types: config && config.types || null,
         active: true,
-        current: {},
-        record: {
-            correct: 0,
-            asked: 0
-        }
+        current: {}
     };
     this.test.availableIntervals = [];
 
@@ -479,7 +527,7 @@ PianoTeacher.prototype.testIntervals = function(config) {
         return PT.keys[keyIndex];
     }
 
-    this.test.run = function(limit) {
+    this.test.run = function() {
         PT.test.current.interval = PT.test.chooseInterval();
         PT.test.current.key = PT.test.chooseKey(PT.test.current.interval);
         PT.test.current.key.highlight();
@@ -504,37 +552,88 @@ PianoTeacher.prototype.testIntervals = function(config) {
     this.test.run();
 }
 
-PianoTeacher.prototype.setupChords = function() {
+PianoTeacher.prototype.testChords = function(config) {
     var PT = this;
+    delete this.test;
 
-    this.chords = {
-        "Major Triad": {
-            type: "Major",
-            group: "triad",
-            intervals: [
-                "M3", "P5"
-            ]
-        },
-        "Minor Triad": {
-            type: "Minor",
-            group: "triad",
-            intervals: [
-                "m3", "P5"
-            ]
-        },
-        "Augmented Triad": {
-            type: "Augmented",
-            group: "triad",
-            intervals: [
-                "M3", "A5"
-            ]
-        },
-        "Diminished Triad": {
-            type: "Diminished",
-            group: "triad",
-            intervals: [
-                "m3", "D5"
-            ]
+    this.test = {
+        groups: config && config.groups || null,
+        types: config && config.types || null,
+        active: true,
+        current: {},
+        record: {
+            correct: 0,
+            asked: 0
         }
     };
+    this.test.availableChords = [];
+
+    Object.keys(this.chords).forEach(function(k) {
+        var chord = PT.chords[k];
+        if(     (PT.test.groups == null || PT.test.groups.indexOf(chord.group) !== -1)
+            && (PT.test.types == null || PT.test.types.indexOf(chord.type) !== -1) 
+          ) {
+            PT.test.availableChords.push(chord);
+        }
+    });
+
+    this.test.chooseChord = function() {
+        var chordIndex = Math.floor(Math.random() * PT.test.availableChords.length);
+        return PT.test.availableChords[chordIndex];
+    }
+
+    this.test.chooseKey = function(chord) {
+        var maxHalfSteps = Math.max.apply(null, chord.intervals.map(function(interval) {
+            return interval.halfSteps;
+        }));
+
+        var keyIndex = Math.floor(Math.random() * (PT.keys.length - maxHalfSteps));
+        return PT.keys[keyIndex];
+    }
+
+    this.test.run = function() {
+        PT.test.current.chord = PT.test.chooseChord();
+        PT.test.current.keys = [];
+        PT.test.current.key = PT.test.chooseKey(PT.test.current.chord);
+        PT.test.current.key.highlight();
+        PT.title.update(PT.test.current.chord.name + ', from ' + PT.test.current.key.key);
+
+        PT.test.current.chord.intervals.forEach(function(interval) {
+            interval.completed = false;
+        });;
+
+        PT.test.current.answer = function(key) {
+            var incompleteIntervals = PT.test.current.chord.intervals.filter(function(interval) {
+                return !interval.completed;
+            });
+            var thisIntervalIndex = incompleteIntervals.map(function(interval) {
+                return interval.halfSteps;
+            }).indexOf(key.number - PT.test.current.key.number);
+
+            if(thisIntervalIndex !== -1) {
+                incompleteIntervals[thisIntervalIndex].completed = true;
+                PT.message.update(incompleteIntervals[thisIntervalIndex].name, 700);
+                PT.test.current.keys.push(key);
+                key.highlight();
+            } else {
+                PT.message.update('Wrong!', 700);
+            }
+
+            if(PT.test.current.chord.intervals.filter(function(interval) {
+                return !interval.completed;
+            }).length == 0) {
+                delete PT.test.current.answer;
+                PT.test.current.keys.forEach(function(key) {
+                    key.play(750);
+                });
+                PT.test.current.key.play(750, function() {
+                    delete PT.test.current.answering;
+                    PT.test.run();
+                });
+
+            }
+        }
+    }
+
+    this.test.run();
 }

@@ -9,8 +9,11 @@ window.onload = function() {
         }
     });
 
+    if(false)
     pt.testIntervals({
         groups: ["third", "fourth", "fifth"],
         types: ["Major", "Minor", "Perfect", "Augmented"]
     });
+
+    pt.testChords();
 }
