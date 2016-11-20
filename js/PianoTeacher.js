@@ -1,7 +1,8 @@
 var PianoTeacher = PianoTeacher || function(config) {
     this.setupAudio();
-    this.renderPiano(config);
     this.setupIntervals();
+    this.setupChords();
+    this.renderPiano(config);
 }
 
 PianoTeacher.prototype.renderPiano = function(config) {
@@ -193,6 +194,10 @@ PianoTeacher.prototype.applyKeyListeners = function(config) {
             key.stop();
         });
 
+        key.rect.on('mouseout', function() {
+            key.stop();
+        });
+
         key.rect.on('click', function() {
             if(PT.test && PT.test.active && PT.test.current && PT.test.current.answer) {
                 PT.test.current.answer(key);
@@ -331,6 +336,24 @@ PianoTeacher.prototype.setupKeys = function(config) {
         key.unhighlight = function() {
             key.rect
                 .attr('fill', key.color);
+        }
+
+        key.playChord = function(chord, duration, callback) {
+            var keys = [];
+            PT.chords[chord].intervals.forEach(function(interval) {
+                var keyNumber = key.number + PT.intervals[interval].halfSteps;
+                var keyIndex = PT.keys.map(function(k) { return k.number; }).indexOf(keyNumber);
+                keys.push(PT.keys[keyIndex]);
+            });
+            keys.forEach(function(otherKey) {
+                otherKey.play();
+            });
+            key.play(duration, function() {
+                keys.forEach(function(otherKey) {
+                    otherKey.stop();
+                });
+                key.stop();
+            });
         }
 
     });
@@ -479,4 +502,39 @@ PianoTeacher.prototype.testIntervals = function(config) {
     }
 
     this.test.run();
+}
+
+PianoTeacher.prototype.setupChords = function() {
+    var PT = this;
+
+    this.chords = {
+        "Major Triad": {
+            type: "Major",
+            group: "triad",
+            intervals: [
+                "M3", "P5"
+            ]
+        },
+        "Minor Triad": {
+            type: "Minor",
+            group: "triad",
+            intervals: [
+                "m3", "P5"
+            ]
+        },
+        "Augmented Triad": {
+            type: "Augmented",
+            group: "triad",
+            intervals: [
+                "M3", "A5"
+            ]
+        },
+        "Diminished Triad": {
+            type: "Diminished",
+            group: "triad",
+            intervals: [
+                "m3", "D5"
+            ]
+        }
+    };
 }
