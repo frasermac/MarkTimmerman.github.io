@@ -103,6 +103,8 @@ PianoTeacher.prototype.setupMicrophone = function(config) {
 }
 
 PianoTeacher.prototype.setupSVG = function(config) {
+    var PT = this;
+
     this.container = config && config.container || this.container || 'body';
     this.svg = {
         width: config && config.width || window.innerWidth * 0.75,
@@ -137,8 +139,25 @@ PianoTeacher.prototype.setupSVG = function(config) {
         .attr('transform', 'translate(0, ' + this.keysContainer.y + ')')
         .attr('fill', 'orange');
 
+    this.optionsContainer = {
+        width: this.svg.width / 2,
+        height: 25,
+        y: this.svg.height - 25
+    };
+
     this.setupTitle();
-    this.setupMessage();
+    //this.setupMessage();
+
+    this.setupOptions([
+        {
+            display: "Intervals",
+            test: function() { PT.testIntervals(); }
+        },
+        {
+            display: "Chords",
+            test: function() { PT.testChords(); }
+        }
+    ]);
 
     this.renderKeys();
     this.applyKeyListeners();
@@ -224,6 +243,57 @@ PianoTeacher.prototype.setupMessage = function() {
             }, duration);
         }
     }
+}
+
+PianoTeacher.prototype.setupOptions = function(options) {
+    var PT = this;
+
+    this.options = {
+        container: this.optionsContainer,
+        options: options
+    };
+    this.options.boxWidth = this.options.container.width / this.options.options.length;
+    this.options.boxHeight = this.options.container.height;
+
+    this.options.g = this.svg.svg.append('g')
+        .attr('width', this.options.container.width)
+        .attr('height', this.options.container.height)
+        .attr('transform', 'translate(0, ' + (this.options.container.y || 0) + ')');
+
+    this.options.options.forEach(function(option, i) {
+        option.g = PT.options.g.append('g')
+            .attr('class', 'optionsBox')
+            .attr('width', PT.options.boxWidth)
+            .attr('height', PT.options.boxHeight)
+            .attr('transform', 'translate(' + (PT.options.boxWidth * i) + ', 0)');
+        option.box = option.g.append('rect')
+            .attr('width', PT.options.boxWidth)
+            .attr('height', PT.options.boxHeight)
+            .attr('fill', 'none')
+            .style('pointer-events', 'all')
+            .attr('stroke', 'rgba(0, 0, 0, 0.25)')
+            .attr('stroke-width', 1);
+        option.label = option.g.append('text')
+            .attr('x', PT.options.boxWidth / 2)
+            .attr('y', PT.options.boxHeight / 2)
+            .attr('text-anchor', 'middle')
+            .style('dominant-baseline', 'central')
+            .style('text-transform', 'uppercase')
+            .style('font-family', 'Josefin Sans')
+            .style('font-size', '13px')
+            .attr('fill', 'black')
+            .style('pointer-events', 'all')
+            .text(option.display);
+
+        option.box.on('click', function() {
+            d3.selectAll('.optionsBox rect')
+                .attr('fill', 'none');
+            option.box
+                .attr('fill', 'rgba(0, 0, 0, 0.25)');
+
+            option.test();
+        });
+    });
 }
 
 PianoTeacher.prototype.renderKeys = function(config) {
@@ -451,6 +521,12 @@ PianoTeacher.prototype.setupKeys = function(config) {
 
 }
 
+PianoTeacher.prototype.unhighlightKeys = function() {
+    this.keys.forEach(function(key) {
+        key.unhighlight();
+    });
+}
+
 PianoTeacher.prototype.setSpecifications = function(key) {
     key.frequency = Math.pow(Math.pow(2, 1/12), key.number - 49) * 440;
 }
@@ -626,6 +702,7 @@ PianoTeacher.prototype.setupChords = function() {
 PianoTeacher.prototype.testIntervals = function(config) {
     var PT = this;
     delete this.test;
+    this.unhighlightKeys();
 
     this.test = {
         groups: config && config.groups || null,
@@ -677,8 +754,6 @@ PianoTeacher.prototype.testIntervals = function(config) {
                     delete PT.test.current.answering;
                     PT.test.run();
                 });
-            } else {
-                PT.message.update('Wrong!', 700);
             }
         }
     }
@@ -689,6 +764,7 @@ PianoTeacher.prototype.testIntervals = function(config) {
 PianoTeacher.prototype.testChords = function(config) {
     var PT = this;
     delete this.test;
+    this.unhighlightKeys();
 
     this.test = {
         groups: config && config.groups || null,
@@ -746,11 +822,9 @@ PianoTeacher.prototype.testChords = function(config) {
 
             if(thisIntervalIndex !== -1) {
                 incompleteIntervals[thisIntervalIndex].completed = true;
-                PT.message.update(incompleteIntervals[thisIntervalIndex].name, 700);
+                //PT.message.update(incompleteIntervals[thisIntervalIndex].name, 700);
                 PT.test.current.keys.push(key);
                 key.highlight();
-            } else {
-                PT.message.update('Wrong!', 700);
             }
 
             if(PT.test.current.chord.intervals.filter(function(interval) {
