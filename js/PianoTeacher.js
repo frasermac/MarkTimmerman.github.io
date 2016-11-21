@@ -571,6 +571,46 @@ PianoTeacher.prototype.setupChords = function() {
             intervals: [
                 "m3", "D5"
             ]
+        },
+        "Dominant Seventh": {
+            name: "Dominant Seventh",
+            type: "Dominant",
+            group: "seventh",
+            intervals: [
+                "M3", "P5", "m7"
+            ]
+        },
+        "Major Seventh": {
+            name: "Major Seventh",
+            type: "Major",
+            group: "seventh",
+            intervals: [
+                "M3", "P5", "M7"
+            ]
+        },
+        "Minor Seventh": {
+            name: "Minor Seventh",
+            type: "Minor",
+            group: "seventh",
+            intervals: [
+                "m3", "P5", "m7"
+            ]
+        },
+        "Half-Diminished Seventh": {
+            name: "Half-Diminished Seventh",
+            type: "Half-Diminished",
+            group: "seventh",
+            intervals: [
+                "m3", "D5", "m7"
+            ]
+        },
+        "Diminished Seventh": {
+            name: "Diminished Seventh",
+            type: "Diminished",
+            group: "seventh",
+            intervals: [
+                "m3", "D5", "D7"
+            ]
         }
     };
 
