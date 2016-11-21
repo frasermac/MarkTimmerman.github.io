@@ -590,6 +590,7 @@ PianoTeacher.prototype.testIntervals = function(config) {
     this.test = {
         groups: config && config.groups || null,
         types: config && config.types || null,
+        exclude: config && config.exclude || null,
         active: true,
         current: {}
     };
@@ -598,7 +599,8 @@ PianoTeacher.prototype.testIntervals = function(config) {
     Object.keys(this.intervals).forEach(function(k) {
         var interval = PT.intervals[k];
         if(     (PT.test.groups == null || PT.test.groups.indexOf(interval.group) !== -1)
-            && (PT.test.types == null || PT.test.types.indexOf(interval.type) !== -1) 
+            &&  (PT.test.types == null || PT.test.types.indexOf(interval.type) !== -1) 
+            &&  (PT.test.exclude == null || PT.test.exclude.indexOf(k) == -1)
           ) {
             PT.test.availableIntervals.push(interval);
         }
@@ -617,6 +619,11 @@ PianoTeacher.prototype.testIntervals = function(config) {
     this.test.run = function() {
         PT.test.current.interval = PT.test.chooseInterval();
         PT.test.current.key = PT.test.chooseKey(PT.test.current.interval);
+
+        if(     PT.test.current.key.number + PT.test.current.interval.halfSteps > PT.endKey
+            &&  PT.test.current.key.number - PT.test.current.interval.halfSteps < PT.startKey  )
+            PT.test.run();
+
         PT.test.current.key.highlight();
         PT.title.update(PT.test.current.interval.name);
 

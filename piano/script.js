@@ -15,5 +15,10 @@ window.onload = function() {
         types: ["Major", "Minor", "Perfect", "Augmented"]
     });
 
+    if(false)
     pt.testChords();
+
+    pt.testIntervals({
+        exclude: ["D2"]
+    });
 }
