@@ -1,6 +1,6 @@
 var PianoTeacher = PianoTeacher || function(config) {
     this.setupAudio();
-    this.setupMicrophone();
+    //this.setupMicrophone();
     this.setupIntervals();
     this.setupChords();
     this.renderPiano(config);
