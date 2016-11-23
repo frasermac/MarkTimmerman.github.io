@@ -1,6 +1,6 @@
 var PianoTeacher = PianoTeacher || function(config) {
     this.setupAudio();
-    //this.setupMicrophone();
+    this.setupMicrophone();
     this.setupIntervals();
     this.setupChords();
     this.renderPiano(config);
@@ -22,17 +22,6 @@ PianoTeacher.prototype.setupMicrophone = function(config) {
 
     this.microphone = {};
     this.microphone.C2 = 65.41;
-    this.microphone.notes = [ "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B" ]; 
-    this.microphone.testFrequencies = [];
-    for(var i=0; i<30; i++) {
-        var noteFrequency = this.microphone.C2 * Math.pow(2, i / 12);
-        var noteName = this.microphone.notes[i % 12];
-        var note = {
-            frequency: noteFrequency,
-            name: noteName
-        }
-        this.microphone.testFrequencies.push(note);
-    }
 
     this.microphone.useMicrophone = function(stream) {
         PT.microphone.context = new AudioContext();
@@ -60,7 +49,7 @@ PianoTeacher.prototype.setupMicrophone = function(config) {
 
                 PT.microphone.correlationWorker.postMessage({
                     timeseries: PT.microphone.buffer,
-                    testFrequencies: PT.microphone.testFrequencies,
+                    keys: PT.keys.map(function(k) { return {frequency: k.frequency}; }),
                     sampleRate: PT.microphone.context.sampleRate
                 });
 
@@ -90,12 +79,18 @@ PianoTeacher.prototype.setupMicrophone = function(config) {
         }
 
         var average = magnitudes.reduce(function(a, b) {
-            return a+ b;
+            return a + b;
         }, 0) / magnitudes.length;
         var confidence = maxMagnitude / average;
         var confidenceThreshold = 10;
-        if(confidence > confidenceThreshold) {
-            var dominantFrequency = PT.microphone.testFrequencies[maxIndex];
+        var magnitudeThreshold = 500;
+
+        if(confidence > confidenceThreshold && average > magnitudeThreshold) {
+            var dominantFrequency = PT.keys[maxIndex];
+            console.log(dominantFrequency);
+            if(PT.test && PT.test.active && PT.test.current && PT.test.current.answer) {
+                PT.test.current.answer(dominantFrequency);
+            }
         }
     }
 
