@@ -13,7 +13,8 @@ PianoTeacher.prototype.renderPiano = function(config) {
 
 PianoTeacher.prototype.setupAudio = function(config) {
     this.audio = {};
-    this.audio.context = new AudioContext();
+    this.audio.AudioContext = window.AudioContext || window.webkitAudioContext;
+    this.audio.context = new this.audio.AudioContext();
 }
 
 // Thank you https://github.com/jbergknoff/guitar-tuner/blob/master/index.html
@@ -87,7 +88,6 @@ PianoTeacher.prototype.setupMicrophone = function(config) {
 
         if(confidence > confidenceThreshold && average > magnitudeThreshold) {
             var dominantFrequency = PT.keys[maxIndex];
-            console.log(dominantFrequency);
             if(PT.test && PT.test.active && PT.test.current && PT.test.current.answer) {
                 PT.test.current.answer(dominantFrequency);
             }
@@ -477,9 +477,9 @@ PianoTeacher.prototype.setupKeys = function(config) {
                 key.oscillator.stop();
         }
 
-        key.highlight = function(duration, callback) {
+        key.highlight = function(color, duration, callback) {
             key.rect
-                .attr('fill', PT.keySettings.highlightFill);
+                .attr('fill', color || PT.keySettings.highlightFill);
 
             if(duration)
                 setTimeout(function() {
@@ -749,6 +749,8 @@ PianoTeacher.prototype.testIntervals = function(config) {
                     delete PT.test.current.answering;
                     PT.test.run();
                 });
+            } else {
+                key.highlight('rgba(255, 209, 000, 1.0)', 500);
             }
         }
     }

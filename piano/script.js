@@ -1,5 +1,11 @@
 var pt;
 
+window.onerror = function(message, url, lineNumber) {
+    console.log(message);
+    alert(lineNumber + ': ' + message);
+    return true;
+}
+
 window.onload = function() {
     pt = new PianoTeacher({
         container: '.content',
