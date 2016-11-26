@@ -1,6 +1,6 @@
 var PianoTeacher = PianoTeacher || function(config) {
     this.setupAudio();
-    //this.setupMicrophone();
+    this.setupMicrophone();
     this.setupIntervals();
     this.setupChords();
     this.renderPiano(config);
@@ -72,6 +72,7 @@ PianoTeacher.prototype.setupMicrophone = function(config) {
 
         var maxIndex = -1;
         var maxMagnitude = 0;
+        var magnitudeThreshold = 500;
         for(var i=0; i<magnitudes.length; i++) {
             if(magnitudes[i] <= maxMagnitude)
                 continue;
@@ -84,7 +85,6 @@ PianoTeacher.prototype.setupMicrophone = function(config) {
         }, 0) / magnitudes.length;
         var confidence = maxMagnitude / average;
         var confidenceThreshold = 10;
-        var magnitudeThreshold = 500;
 
         if(confidence > confidenceThreshold && average > magnitudeThreshold) {
             var dominantFrequency = PT.keys[maxIndex];
@@ -94,7 +94,8 @@ PianoTeacher.prototype.setupMicrophone = function(config) {
         }
     }
 
-    navigator.getUserMedia.call(navigator, {"audio": true}, this.microphone.useMicrophone, function() {});
+    if(AudioContext)
+        navigator.getUserMedia.call(navigator, {"audio": true}, this.microphone.useMicrophone, function() {});
 }
 
 PianoTeacher.prototype.setupSVG = function(config) {
@@ -497,7 +498,8 @@ PianoTeacher.prototype.setupKeys = function(config) {
         key.playChord = function(chord, duration, callback) {
             var keys = [];
             PT.chords[chord].intervals.forEach(function(interval) {
-                var keyNumber = key.number + PT.intervals[interval].halfSteps;
+                var keyNumber = key.number + interval.halfSteps;
+                console.log(keyNumber);
                 var keyIndex = PT.keys.map(function(k) { return k.number; }).indexOf(keyNumber);
                 keys.push(PT.keys[keyIndex]);
             });
@@ -514,6 +516,19 @@ PianoTeacher.prototype.setupKeys = function(config) {
 
     });
 
+}
+
+PianoTeacher.prototype.getKey = function(input) {
+    var type = typeof input;
+    var PT = this;
+    var keyMatch = null;
+    for(var i=this.startKey;i<this.endKey && keyMatch==null;i++) {
+        var key = this.keys[i - this.startKey];
+        if((type == 'string' && key.key == input) || (type == 'number' && key.number == input))
+            keyMatch = key;
+    };
+
+    return keyMatch;
 }
 
 PianoTeacher.prototype.unhighlightKeys = function() {
