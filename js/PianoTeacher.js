@@ -70,6 +70,9 @@ PianoTeacher.prototype.setupMicrophone = function(config) {
             return z[0] * z[0] + z[1] * z[1];
         });
 
+        if(PT.applyMagnitudes)
+            PT.applyMagnitudes(magnitudes);
+
         var maxIndex = -1;
         var maxMagnitude = 0;
         var magnitudeThreshold = 500;
@@ -499,7 +502,6 @@ PianoTeacher.prototype.setupKeys = function(config) {
             var keys = [];
             PT.chords[chord].intervals.forEach(function(interval) {
                 var keyNumber = key.number + interval.halfSteps;
-                console.log(keyNumber);
                 var keyIndex = PT.keys.map(function(k) { return k.number; }).indexOf(keyNumber);
                 keys.push(PT.keys[keyIndex]);
             });
