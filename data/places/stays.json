@@ -1,14 +1,59 @@
 [
     {
+        "place": "Boston, MA",
+        "address": "103 Myrtle Street, Unit 2, Boston, MA",
+        "name": "103 Myrtle",
+        "startDate": "2016-11-17",
+        "endDate": "2016-11-30"
+    },
+    {
+        "place": "Brookfield, CT",
+        "address": "66 Stony Hill Road, Brookfield, CT, 06804",
+        "name": "Home",
+        "startDate": "2016-11-23",
+        "endDate": "2016-11-27"
+    },
+    {
+        "place": "Boston, MA",
+        "address": "103 Myrtle Street, Unit 2, Boston, MA",
+        "name": "103 Myrtle",
+        "startDate": "2016-11-18",
+        "endDate": "2016-11-23"
+    },
+    {
+        "place": "Boston",
+        "address": "377 West Broadway, #22, Boston, MA",
+        "name": "Boston",
+        "realName": "Graham Residence",
+        "coordinates": {
+            "lat": 42.3375242,
+            "lng": -71.0492589
+        },
+        "startDate": "2016-11-17",
+        "endDate": "2016-11-18"
+    },
+    {
+        "place": "NYC",
+        "address": "34th St b/t 11th Ave and 12th Ave, New York, NY",
+        "name": "Megabus, NYC to Boston",
+        "coordinates": {
+            "lat": 40.7560455,
+            "lng": -74.0028513
+        },
+        "startDate": "2016-11-16",
+        "endDate": "2016-11-17"
+    },
+    {
         "place": "NYC",
         "address": "15 Cornelia Street, #3R, New York, NY",
-        "name": "Voorhes Residence",
+        "name": "NYC",
+        "realName": "Voorhes Residence",
         "coordinates": {
             "lat": 40.7316819,
             "lng": -74.0019452
         },
-        "startDate": "2016-11-16",
-        "endDate": "2016-11-17"
+        "startDate": "2016-11-15",
+        "endDate": "2016-11-16"
     },
     {
         "place": "Boston, MA",
@@ -19,7 +64,7 @@
             "lng": -71.0682762
         },
         "startDate": "2016-10-30",
-        "endDate": "2016-11-16"
+        "endDate": "2016-11-15"
     },
     {
         "place": "Durham, NC",
