@@ -1,6 +1,6 @@
 var PianoTeacher = PianoTeacher || function(config) {
     this.setupAudio();
-    this.setupMicrophone();
+    this.setupMicrophone(config);
     this.setupIntervals();
     this.setupChords();
     this.renderPiano(config);
@@ -23,6 +23,7 @@ PianoTeacher.prototype.setupMicrophone = function(config) {
 
     this.microphone = {};
     this.microphone.C2 = 65.41;
+    this.microphone.magnitudeThreshold = config && config.magnitudeThreshold || 13000;
 
     this.microphone.useMicrophone = function(stream) {
         PT.microphone.context = new AudioContext();
@@ -74,10 +75,9 @@ PianoTeacher.prototype.setupMicrophone = function(config) {
             PT.applyMagnitudes(magnitudes);
 
         var peaks = [];
-        var magnitudeThreshold = 15000;
 
         for(var i=0; i<magnitudes.length; i++) {
-            if(magnitudes[i] >= magnitudeThreshold) {
+            if(magnitudes[i] >= PT.microphone.magnitudeThreshold) {
                 peaks.push({
                     magnitude: magnitudes[i],
                     key: PT.keys[i]

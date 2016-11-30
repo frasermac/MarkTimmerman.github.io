@@ -9,6 +9,7 @@ window.onload = function() {
         keys: {
             startKey: 34,
             endKey: 55
-        }
+        },
+        magnitudeThreshold: 12500
     });
 }
