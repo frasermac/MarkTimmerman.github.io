@@ -73,26 +73,23 @@ PianoTeacher.prototype.setupMicrophone = function(config) {
         if(PT.applyMagnitudes)
             PT.applyMagnitudes(magnitudes);
 
-        var maxIndex = -1;
-        var maxMagnitude = 0;
-        var magnitudeThreshold = 500;
+        var peaks = [];
+        var magnitudeThreshold = 15000;
+
         for(var i=0; i<magnitudes.length; i++) {
-            if(magnitudes[i] <= maxMagnitude)
-                continue;
-            maxIndex = i;
-            maxMagnitude = magnitudes[i];
+            if(magnitudes[i] >= magnitudeThreshold) {
+                peaks.push({
+                    magnitude: magnitudes[i],
+                    key: PT.keys[i]
+                });
+            }
         }
 
-        var average = magnitudes.reduce(function(a, b) {
-            return a + b;
-        }, 0) / magnitudes.length;
-        var confidence = maxMagnitude / average;
-        var confidenceThreshold = 10;
-
-        if(confidence > confidenceThreshold && average > magnitudeThreshold) {
-            var dominantFrequency = PT.keys[maxIndex];
+        if(peaks.length > 0) {
             if(PT.test && PT.test.active && PT.test.current && PT.test.current.answer) {
-                PT.test.current.answer(dominantFrequency);
+                peaks.forEach(function(peak) {
+                    PT.test.current.answer(peak.key);
+                });
             }
         }
     }
