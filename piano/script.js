@@ -8,8 +8,14 @@ window.onload = function() {
         container: '.content',
         keys: {
             startKey: 34,
-            endKey: 55
+            endKey: 58
         },
         magnitudeThreshold: 12500
+    });
+
+    pt.testScales({
+        progressions: {
+            length: 5
+        }
     });
 }
