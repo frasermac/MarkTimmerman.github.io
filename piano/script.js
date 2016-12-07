@@ -12,10 +12,4 @@ window.onload = function() {
         },
         magnitudeThreshold: 12500
     });
-
-    pt.testScales({
-        progressions: {
-            length: 5
-        }
-    });
 }
