@@ -1,9 +1,12 @@
 var PianoTeacher = PianoTeacher || function(config) {
     this.setupAudio();
-    this.setupMicrophone(config);
     this.setupIntervals();
     this.setupChords();
+    this.setupScales();
     this.renderPiano(config);
+
+    if(window.AudioContext)
+        this.setupMicrophone(config);
 }
 
 PianoTeacher.prototype.renderPiano = function(config) {
@@ -94,8 +97,7 @@ PianoTeacher.prototype.setupMicrophone = function(config) {
         }
     }
 
-    if(AudioContext)
-        navigator.getUserMedia.call(navigator, {"audio": true}, this.microphone.useMicrophone, function() {});
+    navigator.getUserMedia.call(navigator, {"audio": true}, this.microphone.useMicrophone, function() {});
 }
 
 PianoTeacher.prototype.setupSVG = function(config) {
@@ -136,7 +138,7 @@ PianoTeacher.prototype.setupSVG = function(config) {
         .attr('fill', 'orange');
 
     this.optionsContainer = {
-        width: this.svg.width / 2,
+        width: this.svg.width,
         height: 25,
         y: this.svg.height - 25
     };
@@ -152,6 +154,26 @@ PianoTeacher.prototype.setupSVG = function(config) {
         {
             display: "Chords",
             test: function() { PT.testChords(); }
+        },
+        {
+            display: "All Scales",
+            test: function() { PT.testScales(); }
+        },
+        {
+            display: "Cmaj",
+            test: function() { PT.testScales({groups: ["C"]}); }
+        },
+        {
+            display: "Gmaj",
+            test: function() { PT.testScales({groups: ["G"]}); }
+        },
+        {
+            display: "Dmaj",
+            test: function() { PT.testScales({groups: ["D"]}); }
+        },
+        {
+            display: "Amaj",
+            test: function() { PT.testScales({groups: ["A"]}); }
         }
     ]);
 
@@ -262,13 +284,6 @@ PianoTeacher.prototype.setupOptions = function(options) {
             .attr('width', PT.options.boxWidth)
             .attr('height', PT.options.boxHeight)
             .attr('transform', 'translate(' + (PT.options.boxWidth * i) + ', 0)');
-        option.box = option.g.append('rect')
-            .attr('width', PT.options.boxWidth)
-            .attr('height', PT.options.boxHeight)
-            .attr('fill', 'none')
-            .style('pointer-events', 'all')
-            .attr('stroke', 'rgba(0, 0, 0, 0.25)')
-            .attr('stroke-width', 1);
         option.label = option.g.append('text')
             .attr('x', PT.options.boxWidth / 2)
             .attr('y', PT.options.boxHeight / 2)
@@ -280,6 +295,13 @@ PianoTeacher.prototype.setupOptions = function(options) {
             .attr('fill', 'black')
             .style('pointer-events', 'all')
             .text(option.display);
+        option.box = option.g.append('rect')
+            .attr('width', PT.options.boxWidth)
+            .attr('height', PT.options.boxHeight)
+            .attr('fill', 'none')
+            .style('pointer-events', 'all')
+            .attr('stroke', 'rgba(0, 0, 0, 0.25)')
+            .attr('stroke-width', 1);
 
         option.box.on('click', function() {
             d3.selectAll('.optionsBox rect')
@@ -621,6 +643,69 @@ PianoTeacher.prototype.setupIntervals = function() {
     });
 }
 
+PianoTeacher.prototype.setupScales = function() {
+    var PT = this;
+
+    this.scales = {
+        "C Major": {
+            name: "C Major",
+            type: "Major",
+            group: "C",
+            notes: [
+                "C", "D", "E", "F", "G", "A", "B"
+            ]
+        },
+        "G Major": {
+            name: "G Major",
+            type: "Major",
+            group: "G",
+            notes: [
+                "G", "A", "B", "C", "D", "E", "F# / Gb"
+            ]
+        },
+        "D Major": {
+            name: "D Major",
+            type: "Major",
+            group: "D",
+            notes: [
+                "D", "E", "F# / Gb", "G", "A", "B", "C# / Db"
+            ]
+        },
+        "A Major": {
+            name: "A Major",
+            type: "Major",
+            group: "A",
+            notes: [
+                "A", "B", "C# / Db", "D", "E", "F# / Gb", "G# / Ab"
+            ]
+        }
+    }
+
+    Object.keys(this.scales).forEach(function(s) {
+        var scale = PT.scales[s];
+        if(scale.type == 'Major') {
+            scale.notes[1-1] = {note: scale.notes[0], chord: 'Major Triad', halfSteps: 0};
+            scale.notes[2-1] = {note: scale.notes[1], chord: 'Minor Triad', halfSteps: 2};
+            scale.notes[3-1] = {note: scale.notes[2], chord: 'Minor Triad', halfSteps: 4};
+            scale.notes[4-1] = {note: scale.notes[3], chord: 'Major Triad', halfSteps: 5};
+            scale.notes[5-1] = {note: scale.notes[4], chord: 'Major Triad', halfSteps: 7};
+            scale.notes[6-1] = {note: scale.notes[5], chord: 'Minor Triad', halfSteps: 9};
+            scale.notes[7-1] = {note: scale.notes[6], chord: 'Diminished Triad', halfSteps: 11};
+            scale.halfNoteMapping = [];
+            scale.halfNoteMapping[0] = scale.notes[1-1];
+            scale.halfNoteMapping[2] = scale.notes[2-1];
+            scale.halfNoteMapping[4] = scale.notes[3-1];
+            scale.halfNoteMapping[5] = scale.notes[4-1];
+            scale.halfNoteMapping[7] = scale.notes[5-1];
+            scale.halfNoteMapping[9] = scale.notes[6-1];
+            scale.halfNoteMapping[11] = scale.notes[7-1];
+            scale.notes.forEach(function(note) {
+                note.chord = PT.chords[note.chord];
+            });
+        }
+    });
+}
+
 PianoTeacher.prototype.setupChords = function() {
     var PT = this;
 
@@ -706,6 +791,16 @@ PianoTeacher.prototype.setupChords = function() {
             PT.chords[k].intervals[i] = PT.intervals[interval];
         });
     });
+}
+
+PianoTeacher.prototype.getChordSymbol = function(scale, number) {
+    var symbols = {
+        'Major':        ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII'],
+        'Minor':        ['i', 'ii', 'iii', 'iv', 'v', 'vi', 'vii'],
+        'Diminished':   ['i°', 'ii°', 'iii°', 'iv°', 'v°', 'vi°', 'vii°']
+    }
+    var type = scale.notes[number-1].chord.type;
+    return symbols[type][number-1];
 }
 
 PianoTeacher.prototype.testIntervals = function(config) {
@@ -850,6 +945,126 @@ PianoTeacher.prototype.testChords = function(config) {
                     PT.test.run();
                 });
 
+            }
+        }
+    }
+
+    this.test.run();
+}
+
+PianoTeacher.prototype.testScales = function(config) {
+    var PT = this;
+    delete this.test;
+    this.unhighlightKeys();
+
+    this.test = {
+        progressions: {
+            length: config && config.progressions && config.progressions.length || 5
+        },
+        groups: config && config.groups || null,
+        types: config && config.types || null,
+        active: true,
+        current: {},
+        record: {
+            correct: 0,
+            asked: 0
+        }
+    };
+
+    this.test.availableScales = [];
+
+    Object.keys(this.scales).forEach(function(s) {
+        var scale = PT.scales[s];
+        if(     (PT.test.groups == null || PT.test.groups.indexOf(scale.group) !== -1)
+            && (PT.test.types == null || PT.test.types.indexOf(scale.type) !== -1)
+          ) {
+            PT.test.availableScales.push(scale);
+        }
+    });
+
+    this.test.chooseScale = function() {
+        var scaleIndex = Math.floor(Math.random() * PT.test.availableScales.length);
+        return PT.test.availableScales[scaleIndex];
+    }
+
+    this.test.generateProgressions = function(length) {
+        var progressions = [];
+        for(var i=0;i<length;i++) {
+            var number = Math.floor((Math.random() * 7) + 1);
+            if(i>0)
+                while(number == progressions[i-1].number)
+                    number = Math.floor((Math.random() * 7) + 1);
+
+            progressions.push({
+                number: number,
+                symbol: PT.getChordSymbol(PT.test.current.scale, number)
+            });
+        }
+        return progressions;
+    }
+
+    this.test.displayProgressions = function() {
+        return PT.test.current.progressions.map(function(progression) {
+            if(progression.completed)
+                return '_';
+            return progression.symbol;
+        }).join(' - ');
+    }
+
+    this.test.updateTitle = function() {
+        PT.title.update(PT.test.current.scale.name + ': ' + PT.test.displayProgressions());
+    }
+
+    this.test.run = function() {
+        PT.test.current.scale = PT.test.chooseScale();
+        PT.test.current.keys = [];
+        PT.test.current.progressions = PT.test.generateProgressions(PT.test.progressions.length);
+        PT.test.updateTitle();
+
+        PT.test.current.progressions.forEach(function(progression) {
+            progression.completed = false;
+            progression.notes = [];
+            var startNote = PT.test.current.scale.notes[progression.number - 1];
+            progression.notes.push({
+                note: startNote.note,
+                completed: false
+            });
+            progression.chord = startNote.chord;
+
+            progression.chord.intervals.forEach(function(interval) {
+                var halfSteps = (startNote.halfSteps + interval.halfSteps) % 12;
+                var note = PT.test.current.scale.halfNoteMapping[halfSteps];
+                progression.notes.push({
+                    note: PT.test.current.scale.halfNoteMapping[halfSteps].note,
+                    completed: false
+                });
+            });
+        });;
+
+        PT.test.current.answer = function(key) {
+            var currentProgressionIndex = -1;
+            for(var i=0;i<PT.test.current.progressions.length && currentProgressionIndex == -1;i++) {
+                if(!PT.test.current.progressions[i].completed)
+                    currentProgressionIndex = i;
+            }
+            var progression = PT.test.current.progressions[currentProgressionIndex];
+            var note = key.key;
+            var noteIndex = progression.notes.map(function(n) { return n.note; }).indexOf(note);
+
+            if(noteIndex !== -1) {
+                key.highlight();
+                progression.notes[noteIndex].completed = true;
+            }
+
+            if(progression.notes.filter(function(n) { return !n.completed; }).length == 0) {
+                progression.completed = true;
+                PT.unhighlightKeys();
+                PT.test.updateTitle();
+            }
+
+            if(PT.test.current.progressions.filter(function(progression) { return !progression.completed; }).length == 0) {
+                delete PT.test.current.answer;
+                PT.test.run();
             }
         }
     }
