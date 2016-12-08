@@ -7,6 +7,17 @@ var PianoTeacher = PianoTeacher || function(config) {
 
     if(window.AudioContext)
         this.setupMicrophone(config);
+
+    this.isTouchDevice = this.checkIfTouchDevice();
+}
+
+PianoTeacher.prototype.checkIfTouchDevice = function() {
+    try {  
+        document.createEvent("TouchEvent");  
+        return true;  
+    } catch (e) {  
+        return false;  
+    }  
 }
 
 PianoTeacher.prototype.renderPiano = function(config) {
@@ -362,18 +373,24 @@ PianoTeacher.prototype.applyKeyListeners = function(config) {
 
     this.keys.forEach(function(key) {
         key.rect.on('mousedown', function() {
-            key.play();
+            if(!PT.isTouchDevice)
+                key.play();
         });
 
         key.rect.on('mouseup', function() {
-            key.stop();
+            if(!PT.isTouchDevice)
+                key.stop();
         });
 
         key.rect.on('mouseout', function() {
-            key.stopOscillator();
+            if(!PT.isTouchDevice)
+                key.stopOscillator();
         });
 
         key.rect.on('click', function() {
+            if(PT.isTouchDevice) {
+                key.play(500);
+            }
             if(PT.test && PT.test.active && PT.test.current && PT.test.current.answer) {
                 PT.test.current.answer(key);
             }
