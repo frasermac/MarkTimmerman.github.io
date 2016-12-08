@@ -1002,7 +1002,7 @@ PianoTeacher.prototype.testScales = function(config) {
 
     this.test = {
         progressions: {
-            length: config && config.progressions && config.progressions.length || 5
+            length: config && config.progressions && config.progressions.length || 4
         },
         groups: config && config.groups || null,
         types: config && config.types || null,
