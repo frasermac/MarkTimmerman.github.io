@@ -171,20 +171,20 @@ PianoTeacher.prototype.setupSVG = function(config) {
             test: function() { PT.testScales(); }
         },
         {
-            display: "Cmaj",
-            test: function() { PT.testScales({groups: ["C"]}); }
+            display: "C, G, D, A: maj",
+            test: function() { PT.testScales({groups: ["C", "G", "D", "A"]}); }
         },
         {
-            display: "Gmaj",
-            test: function() { PT.testScales({groups: ["G"]}); }
+            display: "Emaj",
+            test: function() { PT.testScales({groups: ["E"]}); }
         },
         {
-            display: "Dmaj",
-            test: function() { PT.testScales({groups: ["D"]}); }
+            display: "Bmaj",
+            test: function() { PT.testScales({groups: ["B"]}); }
         },
         {
-            display: "Amaj",
-            test: function() { PT.testScales({groups: ["A"]}); }
+            display: "Fmaj",
+            test: function() { PT.testScales({groups: ["F"]}); }
         }
     ]);
 
@@ -696,6 +696,30 @@ PianoTeacher.prototype.setupScales = function() {
             group: "A",
             notes: [
                 "A", "B", "C# / Db", "D", "E", "F# / Gb", "G# / Ab"
+            ]
+        },
+        "E Major": {
+            name: "E Major",
+            type: "Major",
+            group: "E",
+            notes: [
+                "E", "F# / Gb", "G# / Ab", "A", "B", "C# / Db", "D# / Eb"
+            ]
+        },
+        "B Major": {
+            name: "B Major",
+            type: "Major",
+            group: "B",
+            notes: [
+                "B", "C# / Db", "D# / Eb", "E", "F# / Gb", "G# / Ab", "A# / Bb", 
+            ]
+        },
+        "F Major": {
+            name: "F Major",
+            type: "Major",
+            group: "F",
+            notes: [
+                "F", "G", "A", "A# / Bb", "C", "D", "E"
             ]
         }
     }
