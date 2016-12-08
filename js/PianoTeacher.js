@@ -390,8 +390,9 @@ PianoTeacher.prototype.applyKeyListeners = function(config) {
         key.rect.on('click', function() {
             if(PT.isTouchDevice) {
                 key.play(500);
-            }
-            if(PT.test && PT.test.active && PT.test.current && PT.test.current.answer) {
+                if(PT.test && PT.test.active && PT.test.current && PT.test.current.answer)
+                    PT.test.current.answer(key);
+            } else if(PT.test && PT.test.active && PT.test.current && PT.test.current.answer) {
                 PT.test.current.answer(key);
             }
         });
