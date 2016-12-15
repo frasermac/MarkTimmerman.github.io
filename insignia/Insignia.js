@@ -5,6 +5,7 @@ var Insignia = Insignia || function(config) {
     this.createContainer();
     this.createBackground();
     this.createOuterCircle();
+    this.createCircumferenceCircle();
 }
 
 Insignia.prototype.setupSettings = function(config) {
@@ -57,6 +58,10 @@ Insignia.prototype.setupSettings = function(config) {
         strokeAtIndex: config && config.outerCircle && config.outerCircle.strokeAtIndex || function(index) {
             return 'rgba(255, 255, 255, 1.0)';
         }
+    }
+
+    this.components.circumferenceCircle = {
+        obj:                this
     }
 }
 
@@ -130,4 +135,8 @@ Insignia.prototype.createOuterCircle = function() {
             .attr('d', function(d, i, arr) {
                 return obj.line(obj.pathComponent(d.index, arr));
             });
+}
+
+Insignia.prototype.createCircumferenceCircle = function() {
+    var obj = this.components.circumferenceCircle;
 }
