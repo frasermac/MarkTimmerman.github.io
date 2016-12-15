@@ -726,6 +726,14 @@ PianoTeacher.prototype.setupScales = function() {
                 "F# / Gb", "G# / Ab", "A# / Bb", "B", "C# / Db", "D# / Eb", "F"
             ]
         },
+        "F Major": {
+            name: "F Major",
+            type: "Major",
+            group: "F",
+            notes: [
+                "F", "G", "A", "A# / Bb", "C", "D", "E"
+            ]
+        },
         "Bb Major": {
             name: "Bb Major",
             type: "Major",
