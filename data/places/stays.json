@@ -1,10 +1,31 @@
 [
     {
+        "place": "Brookfield, CT",
+        "address": "66 Stony Hill Road, Brookfield, CT, 06804",
+        "name": "Home",
+        "startDate": "2016-12-23",
+        "endDate": "2016-12-27"
+    },
+    {
+        "place": "Boston, MA",
+        "address": "103 Myrtle Street, Unit 2, Boston, MA",
+        "name": "103 Myrtle",
+        "startDate": "2016-12-18",
+        "endDate": "2016-12-23"
+    },
+    {
+        "place": "NYC",
+        "address": "194 E. 2nd Street, Apt. 5A, New York, NY",
+        "name": "Nate and Alli's",
+        "startDate": "2016-12-17",
+        "endDate": "2016-12-18"
+    },
+    {
         "place": "Boston, MA",
         "address": "103 Myrtle Street, Unit 2, Boston, MA",
         "name": "103 Myrtle",
         "startDate": "2016-11-27",
-        "endDate": "2016-12-08"
+        "endDate": "2016-12-17"
     },
     {
         "place": "Brookfield, CT",
