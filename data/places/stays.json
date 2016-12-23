@@ -17,6 +17,10 @@
         "place": "NYC",
         "address": "194 E. 2nd Street, Apt. 5A, New York, NY",
         "name": "Nate and Alli's",
+        "coordinates": {
+            "lat": 40.722309,
+            "lng": -73.9836376
+        },
         "startDate": "2016-12-17",
         "endDate": "2016-12-18"
     },
