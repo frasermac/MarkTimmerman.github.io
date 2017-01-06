@@ -1,5 +1,31 @@
 [
     {
+        "place": "Boston, MA",
+        "name": "103 Myrtle",
+        "startDate": "2017-01-02",
+        "endDate": "2017-01-06"
+    },
+    {
+        "place": "Providence, RI",
+        "name": "Carriage Home (AirBnB)",
+        "address": "261 Norwood Avenue, Providence, RI",
+        "startDate": "2016-12-31",
+        "endDate": "2017-01-02"
+    },
+    {
+        "place": "Newport, RI",
+        "name": "Gray Craig Estate",
+        "address": "Gray Craig Road, Middleton, RI",
+        "startDate": "2016-12-30",
+        "endDate": "2016-12-31"
+    },
+    {
+        "place": "Boston, MA",
+        "name": "103 Myrtle",
+        "startDate": "2016-12-27",
+        "endDate": "2016-12-30"
+    },
+    {
         "place": "Brookfield, CT",
         "address": "66 Stony Hill Road, Brookfield, CT, 06804",
         "name": "Home",
