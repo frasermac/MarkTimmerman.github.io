@@ -9,6 +9,10 @@
         "place": "Providence, RI",
         "name": "Carriage Home (AirBnB)",
         "address": "261 Norwood Avenue, Providence, RI",
+        "coordinates": {
+            "lat": 41.779276,
+            "lng": -71.402929
+        },
         "startDate": "2016-12-31",
         "endDate": "2017-01-02"
     },
@@ -16,6 +20,10 @@
         "place": "Newport, RI",
         "name": "Gray Craig Estate",
         "address": "Gray Craig Road, Middleton, RI",
+        "coordinates": {
+            "lat": 41.49721539999999,
+            "lng": -71.2627467
+        },
         "startDate": "2016-12-30",
         "endDate": "2016-12-31"
     },
