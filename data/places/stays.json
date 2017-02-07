@@ -2,8 +2,34 @@
     {
         "place": "Boston, MA",
         "name": "103 Myrtle",
+        "startDate": "2017-02-05",
+        "endDate": "2017-02-06"
+    },
+    {
+        "place": "West Yarmouth, Cape Cod, MA",
+        "name": "Bugga Beach",
+        "startDate": "2017-02-03",
+        "endDate": "2017-02-05"
+    },
+    {
+        "place": "Boston, MA",
+        "name": "103 Myrtle",
+        "startDate": "2017-01-19",
+        "endDate": "2017-02-03"
+    },
+    {
+        "place": "Boston",
+        "address": "377 West Broadway, #22, Boston, MA",
+        "name": "Boston",
+        "realName": "Graham Residence",
+        "startDate": "2017-01-18",
+        "endDate": "2017-01-19"
+    },
+    {
+        "place": "Boston, MA",
+        "name": "103 Myrtle",
         "startDate": "2017-01-02",
-        "endDate": "2017-01-06"
+        "endDate": "2017-01-18"
     },
     {
         "place": "Providence, RI",
