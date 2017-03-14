@@ -2,8 +2,35 @@
     {
         "place": "Boston, MA",
         "name": "103 Myrtle",
+        "startDate": "2017-02-20",
+        "endDate": "2017-03-16"
+    },
+    {
+        "place": "Brookfield, CT",
+        "address": "66 Stony Hill Road, Brookfield, CT, 06804",
+        "name": "Home",
+        "startDate": "2017-02-19",
+        "endDate": "2017-02-20"
+    },
+    {
+        "place": "NYC",
+        "address": "5W 8th Street, New York, NY 10011",
+        "name": "The Marlton Hotel",
+        "startDate": "2017-12-18",
+        "endDate": "2017-12-19"
+    },
+    {
+        "place": "Brookfield, CT",
+        "address": "66 Stony Hill Road, Brookfield, CT, 06804",
+        "name": "Home",
+        "startDate": "2017-02-15",
+        "endDate": "2017-02-18"
+    },
+    {
+        "place": "Boston, MA",
+        "name": "103 Myrtle",
         "startDate": "2017-02-05",
-        "endDate": "2017-02-06"
+        "endDate": "2017-02-15"
     },
     {
         "place": "West Yarmouth, Cape Cod, MA",
