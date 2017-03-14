@@ -16,6 +16,10 @@
         "place": "NYC",
         "address": "5W 8th Street, New York, NY 10011",
         "name": "The Marlton Hotel",
+        "coordinates": {
+            "lat": 40.7326526,
+            "lng": -73.9967989
+        },
         "startDate": "2017-02-18",
         "endDate": "2017-02-19"
     },
