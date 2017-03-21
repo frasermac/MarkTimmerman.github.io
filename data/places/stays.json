@@ -2,6 +2,19 @@
     {
         "place": "Boston, MA",
         "name": "103 Myrtle",
+        "startDate": "2017-03-20",
+        "endDate": "2017-03-21"
+    },
+    {
+        "place": "Nashville, TN",
+        "name": "Nashville, TN",
+        "address": "818 1st Ave N, Nashville, TN, 37201",
+        "startDate": "2017-03-16",
+        "endDate": "2017-03-20"
+    },
+    {
+        "place": "Boston, MA",
+        "name": "103 Myrtle",
         "startDate": "2017-02-20",
         "endDate": "2017-03-16"
     },
