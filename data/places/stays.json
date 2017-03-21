@@ -9,6 +9,10 @@
         "place": "Nashville, TN",
         "name": "Nashville, TN",
         "address": "818 1st Ave N, Nashville, TN, 37201",
+        "coordinates": {
+            "lat": 36.173755,
+            "lng": -86.78078400000001
+        },
         "startDate": "2017-03-16",
         "endDate": "2017-03-20"
     },
