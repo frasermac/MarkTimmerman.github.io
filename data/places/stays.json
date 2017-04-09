@@ -2,8 +2,21 @@
     {
         "place": "Boston, MA",
         "name": "103 Myrtle",
+        "startDate": "2017-04-09",
+        "endDate": "2017-04-10"
+    },
+    {
+        "place": "Esperanza Resort, Cabo, Mexico",
+        "name": "Esperanza Resort, Cabo, Mexico",
+        "address": "Carretera Transpeninsular Km. 7 Mz 10, Punta Ballena, 23410 Cabo San Lucas, B.C.S.",
+        "startDate": "2017-04-02",
+        "endDate": "2017-04-09"
+    },
+    {
+        "place": "Boston, MA",
+        "name": "103 Myrtle",
         "startDate": "2017-03-20",
-        "endDate": "2017-03-21"
+        "endDate": "2017-04-02"
     },
     {
         "place": "Nashville, TN",
