@@ -9,6 +9,10 @@
         "place": "Esperanza Resort, Cabo, Mexico",
         "name": "Esperanza Resort, Cabo, Mexico",
         "address": "Carretera Transpeninsular Km. 7 Mz 10, Punta Ballena, 23410 Cabo San Lucas, B.C.S.",
+        "coordinates": {
+            "lat": 22.901636,
+            "lng": -109.852531
+        },
         "startDate": "2017-04-02",
         "endDate": "2017-04-09"
     },
