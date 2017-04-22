@@ -53,7 +53,7 @@ function drawGraph() {
     graph.svg = d3.select('.content').insert('svg')
         .attr('width', graph.width)
         .attr('height', graph.height)
-        .style('transform', 'translate(12.5%, 5%)');
+        .style('transform', 'translate(12.5%, 50%)');
     graph.g = graph.svg.append('g')
         .attr('width', graph.width)
         .attr('height', graph.height);
