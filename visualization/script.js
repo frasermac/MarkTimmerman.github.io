@@ -19,6 +19,8 @@ window.onload = function() {
             .range([0, 500]),
         y: d3.scaleLinear()
             .range([300, 0]),
+        // Linear, Cardinal, Step, StepBefore, StepAfter, MonotoneX, CatmullRom, Basis
+        curve: d3.curveCatmullRom, 
         data: [
             1, 2, 4,  10, 16, 28, 40, 63, 99, 150, 239
         ].map(function(d, i) {

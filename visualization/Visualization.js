@@ -58,9 +58,7 @@ Visualization.prototype.appendPath = function(container, configuration) {
     var thisVisualization = this;
     container = container || this.contentElement;
     configuration = configuration || {};
-    var line = d3.line()
-        .x(function(d) { return configuration.x(configuration.getX(d)); })
-        .y(function(d) { return configuration.y(configuration.getY(d)); });
+    var line = this.buildLine(configuration);
 
     configuration.x.domain(d3.extent(configuration.data, function(d) { return configuration.getX(d); }));
     configuration.y.domain(d3.extent(configuration.data, function(d) { return configuration.getY(d); }));
@@ -71,10 +69,19 @@ Visualization.prototype.appendPath = function(container, configuration) {
         .attr('stroke', 'steelblue')
         .attr('stroke-width', 1.5)
         .attr('d', line);
-
     path.configuration = configuration;
 
     return path;
+}
+
+Visualization.prototype.buildLine = function(configuration) {
+    var line = d3.line()
+        .x(function(d) { return configuration.x(configuration.getX(d)); })
+        .y(function(d) { return configuration.y(configuration.getY(d)); });
+    if (configuration.curve) {
+        line.curve(configuration.curve);
+    }
+    return line;
 }
 
 Visualization.prototype.appendLineGraph = function(configuration) {
