@@ -4,14 +4,27 @@ var Visualization = Visualization || function(configuration) {
 
 Visualization.prototype.configure = function(configuration) {
     this.contentElement = configuration.contentElement;
+    this.data = configuration.data;
+    this.width = configuration.attributes.width || window.innerWidth;
+    this.height = configuration.attributes.height || window.innerHeight;
     if (configuration.setupContainer) {
         this.setupContainer(configuration);
     }
 }
 
+Visualization.prototype.hydrateConfiguration = function(configuration) {
+    configuration = configuration || {};
+    configuration.attributes = configuration.attributes || {};
+    configuration.styles = configuration.styles || {};
+    return configuration;
+}
+
+Visualization.prototype.setupListener = function(element, action, configuration) {
+    element.on(action, configuration);
+}
+
 Visualization.prototype.setupContainer = function(configuration) {
-    this.width = configuration.attributes.width || window.innerWidth;
-    this.height = configuration.attributes.height || window.innerHeight;
+    configuration = this.hydrateConfiguration(configuration);
     this.svg = this.appendSVG(null, configuration);
     this.g = this.appendG(this.svg);
 }
@@ -47,9 +60,15 @@ Visualization.prototype.appendObj = function(type, container, configuration) {
 }
 
 Visualization.prototype.appendG = function(container, configuration) {
-    container = container || this.contentElement;
-    configuration = configuration || {};
     return this.appendObj('g', container, configuration);
+}
+
+Visualization.prototype.appendLine = function(container, configuration) {
+    return this.appendObj('line', container, configuration);
+}
+
+Visualization.prototype.appendCircle = function(container, configuration) {
+    return this.appendObj('circle', container, configuration);
 }
 
 Visualization.prototype.setAttributes = function(obj, attributes) {
@@ -67,7 +86,7 @@ Visualization.prototype.setStyles = function(obj, styles) {
     }
     Object.keys(styles).map(function(attribute) {
         obj.attr(attribute, styles[attribute]); 
-    }).bind(this);
+    });
 }
 
 Visualization.prototype.appendPath = function(container, configuration) {
@@ -99,18 +118,11 @@ Visualization.prototype.buildLineForPath = function(configuration) {
     return line;
 }
 
-Visualization.prototype.appendLine = function(container, configuration) {
-    container = container || this.contentElement;
-    configuration = configuration || {};
-    var line = container.append('line');
-    this.setAttributes(line, configuration.attributes);
-    return line;
-}
-
 Visualization.prototype.appendLineGraph = function(container, configuration) {
     this.line = this.appendPath(container, configuration);
     this.appendXAxis(container, configuration);
     this.appendYAxis(container, configuration);
+    this.appendMarker(container, configuration);
     return this.line;
 }
 
@@ -132,10 +144,44 @@ Visualization.prototype.appendYAxis = function(container, configuration) {
     return yAxis;
 }
 
+Visualization.prototype.appendMarker = function(container, configuration) {
+    if (!configuration.marker) {
+        return;
+    }
+    var markerConfiguration = this.buildMarkerConfiguration(configuration);
+    var marker = this.appendCircle(container, markerConfiguration);
+    this.setupListener(container, 'mousemove', this.buildMarkerDefaultMousemove(marker, configuration));
+    return marker;
+}
+
+Visualization.prototype.buildMarkerConfiguration = function(values) {
+    var configuration = this.hydrateConfiguration();
+    values = this.hydrateConfiguration(values);
+    configuration.attributes.cx = values.attributes.cx || 0;
+    configuration.attributes.cy = values.attributes.cy || 0;
+    configuration.attributes.r = values.attributes.r || 5;
+    configuration.attributes['stroke-width'] = values.attributes['stroke-width'] || 1;
+    configuration.attributes.stroke = values.attributes.stroke || 'steelblue';
+    configuration.styles.display = configuration.styles.display || 'none';
+    return configuration;
+}
+
+Visualization.prototype.buildMarkerDefaultMousemove = function(marker, configuration) {
+    //var bisect = d3.bisector(function(d) { 
+    return function() {
+        var coordinates = d3.mouse(this);
+        marker
+            .style('display', 'initial')
+            .attr('cx', coordinates[0])
+            .attr('cy', coordinates[1]);
+    }
+}
+
 Visualization.prototype.buildXAxisConfiguration = function(values) {
     var configuration = {
         attributes: {}
     };
+    values = this.hydrateConfiguration(values);
     configuration.attributes.x1 = values.attributes.x1 || 0;
     configuration.attributes.x2 = values.attributes.x2 || this.getWidth();
     configuration.attributes.y1 = values.attributes.y1 || this.getHeight();
@@ -149,6 +195,7 @@ Visualization.prototype.buildYAxisConfiguration = function(values) {
     var configuration = {
         attributes: {}
     };
+    values = this.hydrateConfiguration(values);
     configuration.attributes.x1 = values.attributes.x1 || 0;
     configuration.attributes.x2 = values.attributes.x2 || 0;
     configuration.attributes.y1 = values.attributes.y1 || 0;

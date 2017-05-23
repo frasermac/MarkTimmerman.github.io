@@ -21,20 +21,34 @@ window.onload = function() {
         y: d3.scaleLinear()
             .range([v.getHeight(), 0]),
         // Linear, Cardinal, Step, StepBefore, StepAfter, MonotoneX, CatmullRom, Basis
-        curve: d3.curveCatmullRom, 
+        curve: d3.curveBasis, 
         axes: {
             attributes: {
                 stroke: 'rgba(255, 255, 255, 0.75)'
             }
         },
+        marker: true,
         data: [
-            1, 2, 4,  10, 16, 28, 40, 63, 99, 150, 239
-        ].map(function(d, i) {
-            return {
-                x: i,
-                y: d
+            {
+                x: 0,
+                y: 19
+            },{
+                x: 70,
+                y: 21
+            },{
+                x: 75,
+                y: 27
+            },{
+                x: 129,
+                y: 35
+            },{
+                x: 133,
+                y: 47
+            },{
+                x: 180,
+                y: 58
             }
-        })
+        ]
     });
     console.log(v);
-};
+}
