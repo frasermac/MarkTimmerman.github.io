@@ -2,8 +2,31 @@
     {
         "place": "Boston, MA",
         "name": "103 Myrtle",
+        "startDate": "2017-05-29",
+        "endDate": "2017-06-02"
+    },
+    {
+        "place": "West Yarmouth, Cape Cod, MA",
+        "name": "Bugga Beach",
+        "startDate": "2017-05-26",
+        "endDate": "2017-05-29"
+    },
+    {
+        "place": "NYC",
+        "address": "35 Bethune Street, Apartment 3A, New York, NY 10014",
+        "name": "Birks Residence",
+        "coordinates": {
+            "lat": 40.7367848,
+            "lng": -74.0076567
+        },
+        "startDate": "2017-05-25",
+        "endDate": "2017-05-26"
+    },
+    {
+        "place": "Boston, MA",
+        "name": "103 Myrtle",
         "startDate": "2017-05-14",
-        "endDate": "2017-05-15"
+        "endDate": "2017-05-25"
     },
     {
         "place": "Brookfield, CT",
