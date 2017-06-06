@@ -33,17 +33,17 @@ var Places = Places || function(config) {
                 format: config && config.axis && config.axis.xAxis && config.axis.xAxis.label && config.axis.xAxis.label.format || function(d) {
                     var months = [  'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
                                     'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-                    return  months[d.getMonth()]
+                    return  months[d.getUTCMonth()]
                             +   ' \''
-                            +   ('' + d.getFullYear()).slice(-2);
+                            +   ('' + d.getUTCFullYear()).slice(-2);
                 },
                 formatExact: config && config.axis && config.axis.xAxis && config.axis.xAxis.label && config.axis.xAxis.label.format || function(d) {
                     var months = [  'January', 'February', 'March', 'April', 'May', 'June',
                                     'July', 'August', 'September', 'October', 'November', 'December'];
-                    return  months[d.getMonth()]
-                            +   ' ' + d.getDate() 
+                    return  months[d.getUTCMonth()]
+                            +   ' ' + d.getUTCDate() 
                             +   ', '
-                            +   d.getFullYear();
+                            +   d.getUTCFullYear();
                 }
             }
         }
