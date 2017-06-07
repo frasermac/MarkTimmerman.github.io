@@ -6,10 +6,15 @@ window.onload = function() {
             width: 500,
             height: 300,
             class: 'graph'
-        },
-        setupContainer: true
+        }
     });
-    v.appendLineGraph(v.g, {
+    v.appendCircle({
+        r: 20,
+        stroke: 'steelblue',
+        strokeWidth: 3
+    });
+    /*
+    v.appendLineGraph({
         getX: function(d, i) {
             return d.x;
         },
@@ -50,5 +55,6 @@ window.onload = function() {
             }
         ]
     });
+    */
     console.log(v);
 }

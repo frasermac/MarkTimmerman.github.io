@@ -1,15 +1,6 @@
-var Visualization = Visualization || function(configuration) {
-    this.configure(configuration);
-}
-
-Visualization.prototype.configure = function(configuration) {
-    this.contentElement = configuration.contentElement;
-    this.data = configuration.data;
-    this.width = configuration.attributes.width || window.innerWidth;
-    this.height = configuration.attributes.height || window.innerHeight;
-    if (configuration.setupContainer) {
-        this.setupContainer(configuration);
-    }
+var Visualization = Visualization || function(configuration, type = 'svg') {
+    configuration = this.hydrateConfiguration(configuration);
+    this.buildVisualizationByType(configuration, type);
 }
 
 Visualization.prototype.hydrateConfiguration = function(configuration) {
@@ -19,14 +10,70 @@ Visualization.prototype.hydrateConfiguration = function(configuration) {
     return configuration;
 }
 
-Visualization.prototype.setupListener = function(element, action, configuration) {
-    element.on(action, configuration);
+Visualization.prototype.buildVisualizationByType = function(configuration, type) {
+    this.type = type;
+    var builder = this.getBuilderByType(type);
+    builder.call(this, configuration);
 }
 
-Visualization.prototype.setupContainer = function(configuration) {
-    configuration = this.hydrateConfiguration(configuration);
-    this.svg = this.appendSVG(null, configuration);
-    this.g = this.appendG(this.svg);
+Visualization.prototype.getBuilderByType = function(type) {
+    var typeToBuilderMapping = this.buildTypeToBuilderMapping();
+    if (!typeToBuilderMapping[type]) {
+        throw `Error: ${type} has no builder function defined`;
+    }
+    return typeToBuilderMapping[type];
+}
+
+Visualization.prototype.buildTypeToBuilderMapping = function() {
+    return {
+        'svg':          this.buildSVG,
+        'g':            this.buildG,
+        'circle':       this.buildCircle
+    }
+}
+
+Visualization.prototype.buildSVG = function(configuration) {
+    this.contentElement = configuration.contentElement;
+    this.width = configuration.attributes.width || window.innerWidth;
+    this.height = configuration.attributes.height || window.innerHeight;
+    this.components = [];
+    this.svg = this.appendSVG(configuration);
+    this.g = this.appendG({
+        attributes: {
+            width: this.width,
+            height: this.height
+        }
+    });
+}
+
+Visualization.prototype.validateObjectConfiguration = function(type, configuration) {
+    if (!configuration) {
+        throw `Error: configuration not defined for building ${type}`;
+    }
+    if (!configuration.container) {
+        throw `Error: container not defined in configuration for building ${type}`;
+    }
+}
+
+Visualization.prototype.buildG = function(configuration) {
+    this.validateObjectConfiguration('g', configuration);
+    this.element = configuration.container.append('g');
+    this.setAttributes(this.element, configuration.attributes);
+    this.setStyles(this.element, configuration.styles);
+}
+
+Visualization.prototype.buildCircle = function(configuration) {
+    this.validateObjectConfiguration('circle', configuration);
+    this.element = configuration.container.append('circle');
+    this.setAttributes(this.element, configuration.attributes);
+    this.setStyles(this.element, configuration.styles);
+}
+
+Visualization.prototype.getContainer = function() {
+    if (this.type == 'svg' && this.g) {
+        return this.g.element;
+    }
+    return this.element;
 }
 
 Visualization.prototype.getAttribute = function(attribute) {
@@ -41,37 +88,32 @@ Visualization.prototype.getHeight = function() {
     return this.getAttribute('height');
 }
 
-Visualization.prototype.appendSVG = function(container, configuration) {
-    container = container || this.contentElement;
-    configuration = configuration || {};
-    obj = d3.select(container).append('svg');
-    this.setAttributes(obj, configuration.attributes);
-    this.setStyles(obj, configuration.styles);
-    return obj;
+Visualization.prototype.setupListener = function(element, action, configuration) {
+    element.on(action, configuration);
 }
 
-Visualization.prototype.appendObj = function(type, container, configuration) {
-    container = container || this.contentElement;
-    configuration = configuration || {};
-    obj = container.append(type);
-    this.setAttributes(obj, configuration.attributes);
-    this.setStyles(obj, configuration.styles);
-    return obj;
+Visualization.prototype.appendSVG = function(configuration = {}) {
+    this.element = d3.select(this.contentElement).append('svg');
+    this.setAttributes(this.element, configuration.attributes);
+    this.setStyles(this.element, configuration.styles);
+    return this.element;
 }
 
-Visualization.prototype.appendG = function(container, configuration) {
-    return this.appendObj('g', container, configuration);
+Visualization.prototype.appendObj = function(type, configuration) {
+    configuration.container = this.getContainer();
+    return new Visualization(configuration, type);
 }
 
-Visualization.prototype.appendLine = function(container, configuration) {
-    return this.appendObj('line', container, configuration);
+Visualization.prototype.appendG = function(configuration) {
+    return this.appendObj('g', configuration);
 }
 
-Visualization.prototype.appendCircle = function(container, configuration) {
-    return this.appendObj('circle', container, configuration);
+Visualization.prototype.appendCircle = function(configuration) {
+    return this.appendObj('circle', configuration);
 }
 
 Visualization.prototype.setAttributes = function(obj, attributes) {
+    this.attributes = attributes;
     if (!attributes) {
         return;
     }
@@ -81,6 +123,7 @@ Visualization.prototype.setAttributes = function(obj, attributes) {
 }
 
 Visualization.prototype.setStyles = function(obj, styles) {
+    this.styles = styles;
     if (!styles) {
         return;
     }
@@ -89,6 +132,7 @@ Visualization.prototype.setStyles = function(obj, styles) {
     });
 }
 
+/*
 Visualization.prototype.appendPath = function(container, configuration) {
     container = container || this.contentElement;
     configuration = configuration || {};
@@ -118,8 +162,8 @@ Visualization.prototype.buildLineForPath = function(configuration) {
     return line;
 }
 
-Visualization.prototype.appendLineGraph = function(container, configuration) {
-    this.line = this.appendPath(container, configuration);
+Visualization.prototype.appendLineGraph = function(configuration) {
+    this.line = this.appendPath(this.getComponentsContainer(), configuration);
     this.appendXAxis(container, configuration);
     this.appendYAxis(container, configuration);
     this.appendMarker(container, configuration);
@@ -204,3 +248,4 @@ Visualization.prototype.buildYAxisConfiguration = function(values) {
     configuration.attributes.stroke = values.attributes.stroke || 'steelblue';
     return configuration;
 }
+*/
