@@ -1,4 +1,5 @@
 var Visualization = Visualization || function(configuration, type = 'svg') {
+    this.components = {};
     configuration = this.hydrateConfiguration(configuration);
     this.buildVisualizationByType(configuration, type);
 }
@@ -28,7 +29,9 @@ Visualization.prototype.buildTypeToBuilderMapping = function() {
     return {
         'svg':          this.buildSVG,
         'g':            this.buildG,
-        'circle':       this.buildCircle
+        'circle':       this.buildCircle,
+        'line':         this.buildLine,
+        'path':         this.buildPath
     }
 }
 
@@ -36,9 +39,9 @@ Visualization.prototype.buildSVG = function(configuration) {
     this.contentElement = configuration.contentElement;
     this.width = configuration.attributes.width || window.innerWidth;
     this.height = configuration.attributes.height || window.innerHeight;
-    this.components = [];
     this.svg = this.appendSVG(configuration);
     this.g = this.appendG({
+        name: 'g',
         attributes: {
             width: this.width,
             height: this.height
@@ -58,14 +61,28 @@ Visualization.prototype.validateObjectConfiguration = function(type, configurati
 Visualization.prototype.buildG = function(configuration) {
     this.validateObjectConfiguration('g', configuration);
     this.element = configuration.container.append('g');
-    this.setAttributes(this.element, configuration.attributes);
+    this.setAttributes(configuration.attributes);
     this.setStyles(this.element, configuration.styles);
 }
 
 Visualization.prototype.buildCircle = function(configuration) {
     this.validateObjectConfiguration('circle', configuration);
     this.element = configuration.container.append('circle');
-    this.setAttributes(this.element, configuration.attributes);
+    this.setAttributes(configuration.attributes);
+    this.setStyles(this.element, configuration.styles);
+}
+
+Visualization.prototype.buildLine = function(configuration) {
+    this.validateObjectConfiguration('line', configuration);
+    this.element = configuration.container.append('line');
+    this.setAttributes(configuration.attributes);
+    this.setStyles(this.element, configuration.styles);
+}
+
+Visualization.prototype.buildPath = function(configuration) {
+    this.validateObjectConfiguration('path', configuration);
+    this.element = configuration.container.append('path');
+    this.setAttributes(configuration.attributes);
     this.setStyles(this.element, configuration.styles);
 }
 
@@ -94,14 +111,20 @@ Visualization.prototype.setupListener = function(element, action, configuration)
 
 Visualization.prototype.appendSVG = function(configuration = {}) {
     this.element = d3.select(this.contentElement).append('svg');
-    this.setAttributes(this.element, configuration.attributes);
+    this.setAttributes(configuration.attributes);
     this.setStyles(this.element, configuration.styles);
     return this.element;
 }
 
 Visualization.prototype.appendObj = function(type, configuration) {
     configuration.container = this.getContainer();
-    return new Visualization(configuration, type);
+    var newVisualization = new Visualization(configuration, type);
+    this.addObjectToComponents(configuration.name, newVisualization);
+    return newVisualization;
+}
+
+Visualization.prototype.addObjectToComponents = function(name, object) {
+    this.components[name] = object;
 }
 
 Visualization.prototype.appendG = function(configuration) {
@@ -112,14 +135,37 @@ Visualization.prototype.appendCircle = function(configuration) {
     return this.appendObj('circle', configuration);
 }
 
-Visualization.prototype.setAttributes = function(obj, attributes) {
-    this.attributes = attributes;
+Visualization.prototype.appendLine = function(configuration) {
+    return this.appendObj('line', configuration);
+}
+
+Visualization.prototype.appendPath = function(configuration) {
+    return this.appendObj('path', configuration);
+}
+
+Visualization.prototype.appendArc = function(configuration) {
+    var arc = d3.arc()
+        .innerRadius(configuration.arcSettings.innerRadius)
+        .outerRadius(configuration.arcSettings.outerRadius)
+        .startAngle(configuration.arcSettings.startAngle)
+        .endAngle(configuration.arcSettings.endAngle);
+    configuration.attributes.d = arc;
+    return this.appendPath(configuration);
+}
+
+Visualization.prototype.setAttributes = function(attributes) {
+    this.attributes = this.attributes || {};
     if (!attributes) {
         return;
     }
     Object.keys(attributes).map(function(attribute) {
-        obj.attr(attribute, attributes[attribute]); 
-    });
+        this.setAttribute(attribute, attributes[attribute]);
+    }.bind(this));
+}
+
+Visualization.prototype.setAttribute = function(attribute, value) {
+    this.attributes[attribute] = value;
+    this.element.attr(attribute, this.attributes[attribute]); 
 }
 
 Visualization.prototype.setStyles = function(obj, styles) {
