@@ -1,7 +1,7 @@
 {
   "name": "dashboard",
   "version": "0.1.0",
-  "homepage": "http://marktimmerman.github.io/dashboard",
+  "homepage": "https://marktimmerman.github.io/dashboard",
   "private": true,
   "dependencies": {
     "d3-shape": "^1.2.0",
