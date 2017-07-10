@@ -9,6 +9,7 @@ export default class NoteDifferenceTrainer extends React.Component {
         super(props);
 
         this.handleChooseNote = this.handleChooseNote.bind(this);
+        this.handleKeyDown = this.handleKeyDown.bind(this);
 
         this.placement = {
             question: {
@@ -46,6 +47,15 @@ export default class NoteDifferenceTrainer extends React.Component {
 
     getRandomDifference() {
         return this.random(7) + 1;
+    }
+
+    componentWillMount() {
+        document.addEventListener('keydown', this.handleKeyDown);
+    }
+
+    handleKeyDown(event) {
+        const key = event.key.toUpperCase();
+        this.handleChooseNote(key);
     }
 
     render() {
