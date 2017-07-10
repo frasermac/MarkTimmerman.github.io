@@ -85,16 +85,19 @@ export default class Performance extends React.Component {
             return null;
         }
         const scale = scaleLinear()
-            .domain([this.getFastestAnswerTime(), this.getSlowestAnswerTime()])
+            .domain(this.buildDomain())
             .range(['green', 'red']);
+        if (answerTime.average > scale.domain()[1]) {
+            return scale(scale.domain()[1]);
+        }
         return scale(answerTime.average);
     }
 
-    calculateAlpha(answerTime) {
-        const scale = scaleLinear()
-            .domain([this.getFastestAnswerTime(), this.getSlowestAnswerTime()])
-            .range([0, 1]);
-        return scale(answerTime.average);
+    buildDomain() {
+        if (this.scaleUsingFastestAndSlowest) {
+            return [this.getFastestAnswerTime(), this.getSlowestAnswerTime()];
+        }
+        return [0, 2000];
     }
 
     getFastestAnswerTime() {
