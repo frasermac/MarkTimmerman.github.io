@@ -25,14 +25,14 @@ export default class NoteDifferenceTrainer extends React.Component {
 
         this.state = {
             note: this.getRandomNote(),
-            difference: this.getRandomDifference(),
+            difference: this.getWeightedRandomDifference(),
         }
     }
 
     randomizeQuestionState() {
         this.setState({
             note: this.getRandomNote(),
-            difference: this.getRandomDifference(),
+            difference: this.getWeightedRandomDifference(),
         });
     }
 
@@ -45,8 +45,31 @@ export default class NoteDifferenceTrainer extends React.Component {
         return Math.floor(Math.random() * max);
     }
 
-    getRandomDifference() {
-        return this.random(7) + 1;
+    getWeightedRandomDifference() {
+        const weightedDifferenceLookupArray = this.buildWeightedDifferenceLookupArray();
+        const randomIndex = this.random(weightedDifferenceLookupArray.length);
+        return weightedDifferenceLookupArray[randomIndex];
+    }
+
+    buildWeightedDifferenceLookupArray() {
+        const differenceDifficulties = this.buildDifferenceDifficulties();
+        return differenceDifficulties.reduce(
+            (lookupArray, differenceDifficulty) => 
+                lookupArray.concat(Array(differenceDifficulty.difficulty).fill(differenceDifficulty.difference)),
+            []
+        );
+    }
+
+    buildDifferenceDifficulties() {
+        return [
+            {difference: 1, difficulty: 1},
+            {difference: 2, difficulty: 2},
+            {difference: 3, difficulty: 3},
+            {difference: 4, difficulty: 4},
+            {difference: 5, difficulty: 4},
+            {difference: 6, difficulty: 3},
+            {difference: 7, difficulty: 2},
+        ];
     }
 
     componentWillMount() {
