@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 import Background from './components/Background.js'
-import GpsViewer from './components/complex/GpsViewer.js'
+import NoteDifferenceTrainer from './NoteDifferenceTrainer/NoteDifferenceTrainer.js'
 
 class App extends Component {
     constructor(props) {
@@ -28,12 +28,7 @@ class App extends Component {
                     height={this.state.height}
                 />
                     {this.buildBackground()}
-                    <GpsViewer
-                        width={this.calculateGpsViewerWidth()}
-                        height={this.calculateGpsViewerHeight()}
-                        parentWidth={this.state.width}
-                        parentHeight={this.state.height}
-                    />
+                    {this.buildNoteDifferenceTrainer()}
                 </g>
             </svg>
         );
@@ -62,32 +57,23 @@ class App extends Component {
         return <Background color='black'/>;
     }
 
-    calculateGpsViewerWidth() {
-        if (this.isGraphAreaSmallerThanDefault()) {
-            return this.getSmallerOfWidthOrHeight() * 0.80;
-        }
-        return 400;
+    buildNoteDifferenceTrainer() {
+        return (
+            <NoteDifferenceTrainer
+                width={this.calculateWidth()}
+                height={this.calculateHeight()}
+                parentWidth={this.state.width}
+                parentHeight={this.state.height}
+            />
+        );
     }
 
-    calculateGpsViewerHeight() {
-        if (this.isGraphAreaSmallerThanDefault()) {
-            return this.getSmallerOfWidthOrHeight() * 0.80;
-        }
-        return 400;
+    calculateWidth() {
+        return this.state.width * 0.95;
     }
 
-    isGraphAreaSmallerThanDefault() {
-        if (this.state.width < 500 || this.state.height < 500) {
-            return true;
-        }
-        return false;
-    }
-
-    getSmallerOfWidthOrHeight() {
-        if (this.state.width < this.state.height) {
-            return this.state.width;
-        }
-        return this.state.height;
+    calculateHeight() {
+        return this.state.height * 0.95;
     }
 }
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 import Background from './components/Background.js'
-import GpsViewer from './components/complex/GpsViewer.js'
+import PlanetGraph from './components/complex/PlanetGraph.js'
 
 class App extends Component {
     constructor(props) {
@@ -16,11 +16,7 @@ class App extends Component {
 
     render() {
         return (
-            <svg
-                width={this.state.width}
-                height={this.state.height}
-                style={{position: 'fixed', top: '0'}}
-            >
+            <svg width={this.state.width} height={this.state.height} >
                 <g
                     className='root'>
                     ref={node => this.node = node}
@@ -28,9 +24,9 @@ class App extends Component {
                     height={this.state.height}
                 />
                     {this.buildBackground()}
-                    <GpsViewer
-                        width={this.calculateGpsViewerWidth()}
-                        height={this.calculateGpsViewerHeight()}
+                    <PlanetGraph
+                        width={this.calculatePlanetGraphWidth()}
+                        height={this.calculatePlanetGraphHeight()}
                         parentWidth={this.state.width}
                         parentHeight={this.state.height}
                     />
@@ -62,14 +58,14 @@ class App extends Component {
         return <Background color='black'/>;
     }
 
-    calculateGpsViewerWidth() {
+    calculatePlanetGraphWidth() {
         if (this.isGraphAreaSmallerThanDefault()) {
             return this.getSmallerOfWidthOrHeight() * 0.80;
         }
         return 400;
     }
 
-    calculateGpsViewerHeight() {
+    calculatePlanetGraphHeight() {
         if (this.isGraphAreaSmallerThanDefault()) {
             return this.getSmallerOfWidthOrHeight() * 0.80;
         }
