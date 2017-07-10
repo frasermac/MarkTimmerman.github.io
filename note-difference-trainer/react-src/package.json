@@ -1,9 +1,11 @@
 {
   "name": "note-difference-trainer",
-  "homepage" : "http://marktimmerman.github.io/note-difference-trainer",
+  "homepage": "http://marktimmerman.github.io/note-difference-trainer",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "d3-scale": "^1.0.6",
+    "immutability-helper": "^2.2.3",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
   },
