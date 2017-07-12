@@ -97,7 +97,7 @@ export default class Performance extends React.Component {
         if (this.scaleUsingFastestAndSlowest) {
             return [this.getFastestAnswerTime(), this.getSlowestAnswerTime()];
         }
-        return [0, 2000];
+        return [500, 1500];
     }
 
     getFastestAnswerTime() {

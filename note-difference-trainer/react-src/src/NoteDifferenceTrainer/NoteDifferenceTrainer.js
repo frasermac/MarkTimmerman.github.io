@@ -38,6 +38,7 @@ export default class NoteDifferenceTrainer extends React.Component {
             difference: this.getWeightedRandomDifference(),
             answerTimes: this.getAnswerTimes(),
             questionProposalTimeInMilliseconds: this.getNowInMilliseconds(),
+            answersToConsider: 1,
         }
     }
 
@@ -113,6 +114,13 @@ export default class NoteDifferenceTrainer extends React.Component {
 
     handleKeyDown(event) {
         const key = event.key.toUpperCase();
+        if (!isNaN(key)) {
+            const answersToConsider = parseInt(key);
+            this.setState({
+                answersToConsider: answersToConsider
+            });
+            console.log(answersToConsider);
+        }
         this.handleChooseNote(key);
     }
 
@@ -278,7 +286,7 @@ export default class NoteDifferenceTrainer extends React.Component {
     }
 
     calculateAverageAnswerTimeForNoteAndDifference(answerTimes) {
-        return this.average(answerTimes.slice(-2));
+        return this.average(answerTimes.slice(-1 * this.state.answersToConsider));
     }
 
     average(numberArray) {
