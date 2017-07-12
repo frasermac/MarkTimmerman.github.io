@@ -272,9 +272,13 @@ export default class NoteDifferenceTrainer extends React.Component {
             (answerTimes, i) => ({
                 note: note,
                 difference: i + 1,
-                average: this.average(answerTimes),
+                average: this.calculateAverageAnswerTimeForNoteAndDifference(answerTimes),
             })
         );
+    }
+
+    calculateAverageAnswerTimeForNoteAndDifference(answerTimes) {
+        return this.average(answerTimes.slice(-2));
     }
 
     average(numberArray) {
