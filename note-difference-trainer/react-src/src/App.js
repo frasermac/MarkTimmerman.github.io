@@ -3,6 +3,7 @@ import './App.css';
 
 import Background from './components/Background.js'
 import NoteDifferenceTrainer from './NoteDifferenceTrainer/NoteDifferenceTrainer.js'
+import ScaleChart from './ScaleChart/ScaleChart.js'
 
 class App extends Component {
     constructor(props) {
@@ -11,6 +12,7 @@ class App extends Component {
         this.state = {
             width: window.innerWidth,
             height: window.innerHeight,
+            display: 'noteDifferenceTrainer', //'keyChart',
         }
     }
 
@@ -28,7 +30,7 @@ class App extends Component {
                     height={this.state.height}
                 />
                     {this.buildBackground()}
-                    {this.buildNoteDifferenceTrainer()}
+                    {this.buildSelectedApp()}
                 </g>
             </svg>
         );
@@ -57,6 +59,16 @@ class App extends Component {
         return <Background color='black'/>;
     }
 
+    buildSelectedApp() {
+        if (this.state.display === 'noteDifferenceTrainer') {
+            return this.buildNoteDifferenceTrainer();
+        }
+        if (this.state.display === 'keyChart') {
+            return this.buildScaleChart();
+        }
+        return null;
+    }
+
     buildNoteDifferenceTrainer() {
         return (
             <NoteDifferenceTrainer
@@ -74,6 +86,17 @@ class App extends Component {
 
     calculateHeight() {
         return this.state.height * 0.95;
+    }
+
+    buildScaleChart() {
+        return (
+            <ScaleChart
+                width={this.calculateWidth()}
+                height={this.calculateHeight()}
+                parentWidth={this.state.width}
+                parentHeight={this.state.height}
+            />
+        );
     }
 }
 
