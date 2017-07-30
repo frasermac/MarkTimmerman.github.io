@@ -2,8 +2,73 @@
     {
         "place": "Boston, MA",
         "name": "103 Myrtle",
+        "startDate": "2017-07-26",
+        "endDate": "2017-07-30"
+    },
+    {
+        "place": "Brookfield, CT",
+        "name": "Home",
+        "startDate": "2017-07-25",
+        "endDate": "2017-07-26"
+    },
+    {
+        "place": "Boston, MA",
+        "name": "103 Myrtle",
+        "startDate": "2017-07-16",
+        "endDate": "2017-07-25"
+    },
+    {
+        "place": "Jackson, NH",
+        "name": "Mount Washington Basecamp",
+        "address": "930 Cartner Notch Road, Jackson, NH 03846",
+        "coordinates": {
+            "lat": 44.2046371,
+            "lng": -71.19864989999999
+        },
+        "startDate": "2017-07-14",
+        "endDate": "2017-07-16"
+    },
+    {
+        "place": "Boston, MA",
+        "name": "103 Myrtle",
+        "startDate": "2017-07-04",
+        "endDate": "2017-07-14"
+    },
+    {
+        "place": "West Yarmouth, Cape Cod, MA",
+        "name": "Bugga Beach",
+        "startDate": "2017-06-30",
+        "endDate": "2017-07-04"
+    },
+    {
+        "place": "Boston, MA",
+        "name": "103 Myrtle",
+        "startDate": "2017-06-18",
+        "endDate": "2017-06-30"
+    },
+    {
+        "place": "Brookfield, CT",
+        "name": "Home",
+        "startDate": "2017-06-16",
+        "endDate": "2017-06-18"
+    },
+    {
+        "place": "Boston, MA",
+        "name": "103 Myrtle",
+        "startDate": "2017-06-11",
+        "endDate": "2017-06-16"
+    },
+    {
+        "place": "West Yarmouth, Cape Cod, MA",
+        "name": "Bugga Beach",
+        "startDate": "2017-06-09",
+        "endDate": "2017-06-11"
+    },
+    {
+        "place": "Boston, MA",
+        "name": "103 Myrtle",
         "startDate": "2017-05-29",
-        "endDate": "2017-06-06"
+        "endDate": "2017-06-09"
     },
     {
         "place": "West Yarmouth, Cape Cod, MA",
