@@ -2,8 +2,20 @@
     {
         "place": "Boston, MA",
         "name": "103 Myrtle",
+        "startDate": "2017-08-07",
+        "endDate": "2017-08-08"
+    },
+    {
+        "place": "West Yarmouth, Cape Cod, MA",
+        "name": "Bugga Beach",
+        "startDate": "2017-08-04",
+        "endDate": "2017-08-07"
+    },
+    {
+        "place": "Boston, MA",
+        "name": "103 Myrtle",
         "startDate": "2017-07-26",
-        "endDate": "2017-07-30"
+        "endDate": "2017-08-04"
     },
     {
         "place": "Brookfield, CT",
