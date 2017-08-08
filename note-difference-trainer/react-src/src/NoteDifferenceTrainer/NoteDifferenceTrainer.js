@@ -7,7 +7,7 @@ import Question from './Question.js';
 import NoteChoices from './NoteChoices.js';
 import Performance from './Performance.js';
 
-export default class NoteDifferenceTrainer extends React.Component {
+export default class ScaleDegreeScaleDegreeTrainer extends React.Component {
     constructor(props) {
         super(props);
 
@@ -35,7 +35,7 @@ export default class NoteDifferenceTrainer extends React.Component {
 
         this.state = {
             note: this.getRandomNote(),
-            difference: this.getWeightedRandomDifference(),
+            scaleDegree: this.getWeightedRandomScaleDegree(),
             answerTimes: this.getAnswerTimes(),
             questionProposalTimeInMilliseconds: this.getNowInMilliseconds(),
             answersToConsider: 1,
@@ -45,7 +45,7 @@ export default class NoteDifferenceTrainer extends React.Component {
     randomizeQuestionState() {
         this.setState({
             note: this.getRandomNote(),
-            difference: this.getWeightedRandomDifference(),
+            scaleDegree: this.getWeightedRandomScaleDegree(),
         });
     }
 
@@ -58,30 +58,30 @@ export default class NoteDifferenceTrainer extends React.Component {
         return Math.floor(Math.random() * max);
     }
 
-    getWeightedRandomDifference() {
-        const weightedDifferenceLookupArray = this.buildWeightedDifferenceLookupArray();
-        const randomIndex = this.random(weightedDifferenceLookupArray.length);
-        return weightedDifferenceLookupArray[randomIndex];
+    getWeightedRandomScaleDegree() {
+        const weightedScaleDegreeLookupArray = this.buildWeightedScaleDegreeLookupArray();
+        const randomIndex = this.random(weightedScaleDegreeLookupArray.length);
+        return weightedScaleDegreeLookupArray[randomIndex];
     }
 
-    buildWeightedDifferenceLookupArray() {
-        const differenceDifficulties = this.buildDifferenceDifficulties();
-        return differenceDifficulties.reduce(
-            (lookupArray, differenceDifficulty) => 
-                lookupArray.concat(Array(differenceDifficulty.difficulty).fill(differenceDifficulty.difference)),
+    buildWeightedScaleDegreeLookupArray() {
+        const scaleDegreeDifficulties = this.buildScaleDegreeDifficulties();
+        return scaleDegreeDifficulties.reduce(
+            (lookupArray, scaleDegreeDifficulty) => 
+                lookupArray.concat(Array(scaleDegreeDifficulty.difficulty).fill(scaleDegreeDifficulty.scaleDegree)),
             []
         );
     }
 
-    buildDifferenceDifficulties() {
+    buildScaleDegreeDifficulties() {
         return [
-            {difference: 1, difficulty: 1},
-            {difference: 2, difficulty: 2},
-            {difference: 3, difficulty: 3},
-            {difference: 4, difficulty: 4},
-            {difference: 5, difficulty: 4},
-            {difference: 6, difficulty: 3},
-            {difference: 7, difficulty: 2},
+            {name: 'first', scaleDegree: 1, difficulty: 1},
+            {name: 'second', scaleDegree: 2, difficulty: 2},
+            {name: 'third', scaleDegree: 3, difficulty: 3},
+            {name: 'fourth', scaleDegree: 4, difficulty: 4},
+            {name: 'fifth', scaleDegree: 5, difficulty: 4},
+            {name: 'sixth', scaleDegree: 6, difficulty: 3},
+            {name: 'seventh', scaleDegree: 7, difficulty: 2},
         ];
     }
 
@@ -127,7 +127,7 @@ export default class NoteDifferenceTrainer extends React.Component {
     render() {
         return (
             <G
-                className='noteDifferenceTrainer'
+                className='scaleDegreeTrainer'
                 width={this.props.width}
                 height={this.props.height}
                 parentWidth={this.props.parentWidth}
@@ -144,15 +144,22 @@ export default class NoteDifferenceTrainer extends React.Component {
     buildQuestionElement() {
         return (
             <Question
+                note={this.state.note}
+                difference={this.getScaleDegreeName(this.state.scaleDegree)}
+
                 width={this.getQuestionElementWidth()}
                 height={this.getQuestionElementHeight()}
                 parentWidth={this.props.width}
                 parentHeight={this.props.height}
-
-                note={this.state.note}
-                difference={this.state.difference}
             />
         );
+    }
+
+    getScaleDegreeName(scaleDegree) {
+        const scaleDegreeDifficulties = this.buildScaleDegreeDifficulties();
+        const scaleDegrees = scaleDegreeDifficulties.map(scaleDegreeDifficulty => scaleDegreeDifficulty.scaleDegree);
+        const scaleDegreeIndex = scaleDegrees.indexOf(scaleDegree);
+        return scaleDegreeDifficulties[scaleDegreeIndex].name;
     }
 
     getQuestionElementWidth() {
@@ -210,7 +217,7 @@ export default class NoteDifferenceTrainer extends React.Component {
 
     getCorrectNoteIndex() {
         const indexOfNote = this.getNoteIndex(this.state.note);
-        return (indexOfNote + this.state.difference - 1) % this.getNotes().length
+        return (indexOfNote + this.state.scaleDegree - 1) % this.getNotes().length
     }
 
     getNoteIndex(note) {
@@ -223,10 +230,10 @@ export default class NoteDifferenceTrainer extends React.Component {
             return;
         }
         const noteIndex = this.getNoteIndex(this.state.note);
-        const differenceIndex = this.state.difference - 1;
+        const scaleDegreeIndex = this.state.scaleDegree - 1;
         const answerTimes = update(this.state.answerTimes, {
             [noteIndex]: {
-                [differenceIndex]: {
+                [scaleDegreeIndex]: {
                     $push: [millisecondsToAnswer]
                 }
             }
@@ -251,7 +258,7 @@ export default class NoteDifferenceTrainer extends React.Component {
         const randomIndex = this.random(worstAnswerTimes.length);
         this.setState({
             note: worstAnswerTimes[randomIndex].note,
-            difference: worstAnswerTimes[randomIndex].difference,
+            scaleDegree: worstAnswerTimes[randomIndex].scaleDegree,
         });
     }
 
@@ -279,13 +286,13 @@ export default class NoteDifferenceTrainer extends React.Component {
         return answerTimesForNote.map(
             (answerTimes, i) => ({
                 note: note,
-                difference: i + 1,
-                average: this.calculateAverageAnswerTimeForNoteAndDifference(answerTimes),
+                scaleDegree: i + 1,
+                average: this.calculateAverageAnswerTimeForNoteAndScaleDegree(answerTimes),
             })
         );
     }
 
-    calculateAverageAnswerTimeForNoteAndDifference(answerTimes) {
+    calculateAverageAnswerTimeForNoteAndScaleDegree(answerTimes) {
         return this.average(answerTimes.slice(-1 * this.state.answersToConsider));
     }
 
