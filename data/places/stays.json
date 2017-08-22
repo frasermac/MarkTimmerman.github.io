@@ -2,8 +2,37 @@
     {
         "place": "Boston, MA",
         "name": "103 Myrtle",
+        "startDate": "2017-08-21",
+        "endDate": "2017-08-22"
+    },
+    {
+        "place": "Cherokee National Forest",
+        "address": "Cherokee National Forest, TN",
+        "name": "Eclipse Viewing Spot",
+        "coordinates": {
+            "lat": 35.099756,
+            "lng": -84.403840
+        },
+        "startDate": "2017-08-21",
+        "endDate": "2017-08-21"
+    },
+    {
+        "place": "Boston, MA",
+        "name": "103 Myrtle",
+        "startDate": "2017-08-13",
+        "endDate": "2017-08-21"
+    },
+    {
+        "place": "Dry Point, Georgetown, Maine",
+        "name": "Dry Point",
+        "startDate": "2017-08-12",
+        "endDate": "2017-08-13"
+    },
+    {
+        "place": "Boston, MA",
+        "name": "103 Myrtle",
         "startDate": "2017-08-07",
-        "endDate": "2017-08-08"
+        "endDate": "2017-08-12"
     },
     {
         "place": "West Yarmouth, Cape Cod, MA",
