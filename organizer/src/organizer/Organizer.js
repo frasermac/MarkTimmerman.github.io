@@ -8,7 +8,7 @@ export default class Organizer extends React.Component {
         super(props);
         this.state = {
             editorState: this.getInitialEditorState(),
-            depressedKeys: {},
+            depressedCommandKeys: {},
         };
         this.handleKeyDown = this.handleKeyDown.bind(this);
         this.handleKeyUp = this.handleKeyUp.bind(this);
@@ -53,8 +53,7 @@ export default class Organizer extends React.Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        return true;
-        return this.state.depressedKeys.Meta === nextState.depressedKeys.Meta;
+        return this.state.depressedCommandKeys.Meta === nextState.depressedCommandKeys.Meta;
     }
 
     render() {
@@ -220,7 +219,7 @@ export default class Organizer extends React.Component {
             case 'Shift':
                 return;
             case 'Meta':
-                this.setKeyAsDepressed(key);
+                this.setCommandKeyAsDepressed(key);
                 return;
             default:
                 console.log(key);
@@ -397,7 +396,7 @@ export default class Organizer extends React.Component {
     }
 
     isCommand() {
-        return this.state.depressedKeys.Meta;
+        return this.state.depressedCommandKeys.Meta;
     }
 
     processCommand(key) {
@@ -449,21 +448,23 @@ export default class Organizer extends React.Component {
         this.updateEditorState(newRecords, newCaret);
     }
 
-    setKeyAsDepressed(key) {
-        this.setKeyDepression(key, true);
+    setCommandKeyAsDepressed(key) {
+        this.setCommandKeyDepression(key, true);
     }
 
-    setKeyDepression(key, depressed) {
-        const newDepressedKeys = update(this.state.depressedKeys, {
+    setCommandKeyDepression(key, depressed) {
+        const newDepressedKeys = update(this.state.depressedCommandKeys, {
             [key]: {$set: depressed},
         });
         this.setState({
-            depressedKeys: newDepressedKeys,
+            depressedCommandKeys: newDepressedKeys,
         });
     }
 
     handleKeyUp(event) {
         const key = event.key;
-        this.setKeyDepression(key, false);
+        if (this.state.depressedCommandKeys[key]) {
+            this.setCommandKeyDepression(key, false);
+        }
     }
 }
