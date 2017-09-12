@@ -13,6 +13,7 @@ export default class Component extends React.Component {
 
     buildElement(element, index) {
         const Tag = `${element.tag}`;
+        const style = this.buildStyle();
         const contents = this.buildContents(element);
         return (
             <Tag
@@ -21,10 +22,17 @@ export default class Component extends React.Component {
                 ref={(element) => this.htmlElement = element}
                 onInput={this.handleChange}
                 onBlur={this.handleChange}
+                style={style}
             >
                 {contents}
             </Tag>
         );
+    }
+
+    buildStyle() {
+        return {
+            minHeight: '0px',
+        };
     }
 
     buildContents(element) {

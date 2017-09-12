@@ -1,6 +1,8 @@
 import React from 'react';
 import update from 'immutability-helper';
 
+import './Organizer.css';
+
 export default class Organizer extends React.Component {
     constructor(props) {
         super(props);
@@ -63,8 +65,13 @@ export default class Organizer extends React.Component {
         const selection = this.getSelection();
         const range = document.createRange();
         const caretPosition = this.getEditorState().caret.offset;
+        let node = activeRecordElement;
 
-        range.setStart(activeRecordElement.childNodes[0], caretPosition);
+        if (node.childNodes.length !== 0) {
+            node = node.childNodes[0];
+        }
+
+        range.setStart(node, caretPosition);
         range.collapse(true);
         selection.removeAllRanges();
         selection.addRange(range);
@@ -82,7 +89,11 @@ export default class Organizer extends React.Component {
 
     getActiveRecordId() {
         const selection = this.getSelection();
-        const activeRecordId = selection.anchorNode.parentElement.dataset.id;
+        let anchorNode = selection.anchorNode;
+        if (!anchorNode.dataset || anchorNode.dataset.type !== 'tag') {
+            anchorNode = anchorNode.parentElement;
+        }
+        const activeRecordId = anchorNode.dataset.id;
         return activeRecordId;
     }
 
@@ -122,6 +133,7 @@ export default class Organizer extends React.Component {
             <Tag
                 key={index}
                 data-id={element.id}
+                data-type='tag'
                 id={'tag-' + element.id}
             >
                 {records}
@@ -193,14 +205,68 @@ export default class Organizer extends React.Component {
         const activeRecordIndex = this.getActiveRecordIndex();
         const activeRecordHtml = this.getActiveRecordHtml();
         const caretPosition = this.getCaretPosition();
+        if (activeRecordIndex === 0 && caretPosition === 0) {
+            return;
+        }
+        if (activeRecordIndex > 0 && activeRecordHtml.length === 0) {
+            this.removeActiveRecord();
+            return;
+        }
+        if (caretPosition === 0 && activeRecordHtml.length > 0) {
+            this.mergeRecordAtIndexWithPreceding(activeRecordIndex);
+            return;
+        }
         const newActiveRecordHtml = activeRecordHtml.substring(0, caretPosition - 1) + activeRecordHtml.slice(caretPosition);
         const newRecords = update(this.getEditorState().records, {
             [activeRecordIndex]: {
-                html: {$set: newActiveRecordHtml}
+                html: {$set: newActiveRecordHtml},
             }
         });
         const newCaret = this.offsetCaretPosition(-1);
         this.updateEditorState(newRecords, newCaret);
+    }
+
+    removeActiveRecord() {
+        const activeRecordIndex = this.getActiveRecordIndex();
+        const newRecords = update(this.getEditorState().records, {
+            $splice: [[activeRecordIndex, 1]]
+        });
+        const newCaret = this.moveCaretToEndOfRecordAtIndex(activeRecordIndex - 1);
+        this.updateEditorState(newRecords, newCaret);
+    }
+
+    moveCaretToEndOfRecordAtIndex(index) {
+        const record = this.getEditorState().records[index];
+        this.updateSelection(index, record.html.length);
+        return {
+            offset: record.html.length,
+            recordIndex: index,
+        };
+    }
+
+    mergeRecordAtIndexWithPreceding(index) {
+        if (index === 0) {
+            throw new Error('Attempting to merge 0th indexed record.');
+        }
+        const precedingRecord = this.getEditorState().records[index - 1];
+        const recordToMerge = this.getEditorState().records[index];
+        const maxId = this.getMaxId();
+        const newRecord = this.buildRecord(
+            maxId + 1,
+            precedingRecord.tag,
+            precedingRecord.html + recordToMerge.html
+        );
+        const newRecords = update(this.getEditorState().records, {
+            $splice: [[index - 1, 2, newRecord]]
+        });
+        this.updateEditorState(
+            newRecords, 
+            {
+                recordIndex: index - 1,
+                offset: precedingRecord.html.length,
+            },
+            () => this.updateSelection(index - 1, precedingRecord.html.length),
+        );
     }
 
     offsetCaretPosition(offset) {
@@ -269,8 +335,13 @@ export default class Organizer extends React.Component {
         const range = document.createRange();
         const recordId = this.getEditorState().records[recordIndex].id;
         const recordElement = document.getElementById(`tag-${recordId}`);
+        let node = recordElement;
 
-        range.setStart(recordElement.childNodes[0], offset);
+        if (node.childNodes.length !== 0) {
+            node = node.childNodes[0];
+        }
+
+        range.setStart(node, offset);
         range.collapse(true);
         selection.removeAllRanges();
         selection.addRange(range);
