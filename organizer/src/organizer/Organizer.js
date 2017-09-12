@@ -53,6 +53,7 @@ export default class Organizer extends React.Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
+        return true;
         return this.state.depressedKeys.Meta === nextState.depressedKeys.Meta;
     }
 
@@ -149,6 +150,7 @@ export default class Organizer extends React.Component {
                 data-id={element.id}
                 data-type='tag'
                 id={'tag-' + element.id}
+                className='tag'
             >
                 {records}
             </Tag>
