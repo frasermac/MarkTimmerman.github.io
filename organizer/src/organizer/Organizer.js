@@ -13,14 +13,17 @@ export default class Organizer extends React.Component {
     }
 
     getInitialEditorState() {
-        const records = this.getInitialRecords();
+        if (!this.getStoredState()) {
+            return this.getDefaultEditorState();
+        }
+        return this.getStoredState();
+    }
+
+    getDefaultEditorState() {
         return {
-            records: records,
-            caret: {
-                recordIndex: records.length - 1,
-                offset: records[records.length - 1].html.length,
-            },
-        };
+            records: this.getInitialRecords(),
+            caret: this.getInitialCaret(),
+        }
     }
 
     getInitialRecords() {
@@ -38,6 +41,15 @@ export default class Organizer extends React.Component {
         ];
     }
 
+    getInitialCaret() {
+        return {
+            caret: {
+                recordIndex: 0,
+                offset: 0,
+            },
+        };
+    }
+
     render() {
         return (
             <div
@@ -53,6 +65,7 @@ export default class Organizer extends React.Component {
 
     componentDidUpdate() {
         this.updateCaretPosition();
+        this.storeState();
     }
 
     updateCaretPosition() {
@@ -98,6 +111,22 @@ export default class Organizer extends React.Component {
 
     getEditorState() {
         return this.state.editorState;
+    }
+
+    storeState() {
+        localStorage.setItem('organizer', JSON.stringify(this.getEditorState()));
+    }
+
+    getStoredState() {
+        const stateString = localStorage.getItem('organizer');
+        if (!stateString || stateString === '') {
+            return null;
+        }
+        try {
+            return JSON.parse(stateString);
+        } catch(err) {
+            return null;
+        }
     }
 
     buildStyle() {
