@@ -43,8 +43,7 @@ export default class Organizer extends React.Component {
             <div
                 className='Organizer'
                 style={this.buildStyle()}
-                contentEditable={true}
-                ref={(htmlElement) => this.htmlElement = htmlElement}
+                ref={(element) => {if (element !== null) { element.contentEditable=true; }}}
                 onKeyDown={this.handleChange}
             >
                 {this.getRecords()}
@@ -192,6 +191,10 @@ export default class Organizer extends React.Component {
             case 'ArrowLeft':
                 return;
             case 'ArrowRight':
+                return;
+            case 'ArrowDown':
+                return;
+            case 'ArrowUp':
                 return;
             case 'Shift':
                 return;
