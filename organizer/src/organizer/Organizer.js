@@ -11,19 +11,27 @@ export default class Organizer extends React.Component {
     }
 
     getInitialEditorState() {
-        const contents = this.getInitialContents();
+        const records = this.getInitialRecords();
         return {
-            contents: contents,
-            caretPosition: contents[contents.length - 1].html.length,
+            records: records,
+            caret: {
+                recordIndex: records.length - 1,
+                offset: records[records.length - 1].html.length,
+            },
         };
     }
 
-    getInitialContents() {
+    getInitialRecords() {
         return [
             {
                 id: '1', 
                 tag: 'p',
                 html: 'One sentence.',
+            },
+            {
+                id: '2', 
+                tag: 'p',
+                html: 'Two sentences.',
             }
         ];
     }
@@ -37,7 +45,7 @@ export default class Organizer extends React.Component {
                 ref={(htmlElement) => this.htmlElement = htmlElement}
                 onKeyDown={this.handleChange}
             >
-                {this.getContents()}
+                {this.getRecords()}
             </div>
         );
     }
@@ -47,15 +55,23 @@ export default class Organizer extends React.Component {
     }
 
     updateCaretPosition() {
-        const selection = window.getSelection();
         const activeRecordElement = this.getActiveRecordElement();
+        if (!activeRecordElement) {
+            return;
+        }
+
+        const selection = this.getSelection();
         const range = document.createRange();
-        const caretPosition = this.getEditorState().caretPosition;
+        const caretPosition = this.getEditorState().caret.offset;
 
         range.setStart(activeRecordElement.childNodes[0], caretPosition);
         range.collapse(true);
         selection.removeAllRanges();
         selection.addRange(range);
+    }
+
+    getSelection() {
+        return window.getSelection();
     }
 
     getActiveRecordElement() {
@@ -65,17 +81,13 @@ export default class Organizer extends React.Component {
     }
 
     getActiveRecordId() {
-        const activeRecordIndex = this.getActiveRecordIndex();
-        const activeRecordId = this.getEditorState().contents[activeRecordIndex].id;
+        const selection = this.getSelection();
+        const activeRecordId = selection.anchorNode.parentElement.dataset.id;
         return activeRecordId;
     }
 
     getEditorState() {
         return this.state.editorState;
-    }
-
-    getActiveRecordIndex() {
-        return 0;
     }
 
     buildStyle() {
@@ -98,28 +110,28 @@ export default class Organizer extends React.Component {
         return 800;
     }
 
-    getContents() {
-        const contents = this.getEditorState().contents.map((element, i) => this.buildElement(element, i));
-        return contents;
+    getRecords() {
+        const records = this.getEditorState().records.map((element, i) => this.buildElement(element, i));
+        return records;
     }
 
     buildElement(element, index) {
         const Tag = `${element.tag}`;
-        const contents = this.buildContents(element);
+        const records = this.buildRecords(element);
         return (
             <Tag
                 key={index}
                 data-id={element.id}
                 id={'tag-' + element.id}
             >
-                {contents}
+                {records}
             </Tag>
         );
     }
 
-    buildContents(element) {
+    buildRecords(element) {
         if (this.elementHasChildren(element)) {
-            return this.buildContentsWithChildren(element);
+            return this.buildRecordsWithChildren(element);
         }
         return element.html;
     }
@@ -131,9 +143,9 @@ export default class Organizer extends React.Component {
         return false;
     }
 
-    buildContentsWithChildren(element, index) {
-        const contents = element.children.map((childElement, i) => this.buildElement(childElement, i));
-        return contents;
+    buildRecordsWithChildren(element, index) {
+        const records = element.children.map((childElement, i) => this.buildElement(childElement, i));
+        return records;
     }
 
     handleChange(event) {
@@ -178,56 +190,123 @@ export default class Organizer extends React.Component {
     }
 
     processBackspace() {
+        const activeRecordIndex = this.getActiveRecordIndex();
         const activeRecordHtml = this.getActiveRecordHtml();
         const caretPosition = this.getCaretPosition();
         const newActiveRecordHtml = activeRecordHtml.substring(0, caretPosition - 1) + activeRecordHtml.slice(caretPosition);
-        this.updateEditorState(newActiveRecordHtml, -1);
+        const newRecords = update(this.getEditorState().records, {
+            [activeRecordIndex]: {
+                html: {$set: newActiveRecordHtml}
+            }
+        });
+        const newCaret = this.offsetCaretPosition(-1);
+        this.updateEditorState(newRecords, newCaret);
+    }
+
+    offsetCaretPosition(offset) {
+        const caret = this.getEditorState().caret;
+        const newCaret = update(caret, {
+            offset: {$set: this.getCaretPosition() + offset}
+        });
+        return newCaret;
     }
 
     getCaretPosition() {
-        const selection = window.getSelection();
+        const selection = this.getSelection();
         const caretPosition = selection.anchorOffset;
         return caretPosition;
     }
 
     getActiveRecordHtml() {
         const activeRecordIndex = this.getActiveRecordIndex();
-        const activeRecordHtml = this.getEditorState().contents[activeRecordIndex].html;
+        const activeRecordHtml = this.getEditorState().records[activeRecordIndex].html;
         return activeRecordHtml;
     }
 
-    updateEditorState(newActiveRecordHtml, caretOffset) {
+    getActiveRecordIndex() {
+        const activeRecordId = this.getActiveRecordId();
+        const recordsIds = this.getEditorState().records.map(record => record.id);
+        const activeRecordIndex = recordsIds.findIndex(id => parseInt(id, 10) === parseInt(activeRecordId, 10));
+        if (activeRecordIndex === -1) {
+            throw new Error('Error: Active record cannot be located.');
+        }
+        return activeRecordIndex;
+    }
+
+    updateEditorState(newRecords, newCaret, callback) {
+        this.setState({
+            editorState: {
+                records: newRecords,
+                caret: newCaret,
+            }
+        }, callback);
+    }
+
+    processEnter() {
         const activeRecordIndex = this.getActiveRecordIndex();
-        const newContents = update(this.getEditorState().contents, {
+        const activeRecordHtml = this.getActiveRecordHtml();
+        const activeRecordTag = this.getActiveRecordTag();
+        const selection = this.getSelection();
+        const caretOffset = selection.anchorOffset;
+        const maxId = this.getMaxId();
+        const topRecord = this.buildRecord(maxId + 1, activeRecordTag, activeRecordHtml.slice(0, caretOffset));
+        const bottomRecord = this.buildRecord(maxId + 2, activeRecordTag, activeRecordHtml.slice(caretOffset));
+        const newRecords = update(this.getEditorState().records, {
+            $splice: [[activeRecordIndex, 1, topRecord, bottomRecord]]
+        });
+        this.updateEditorState(
+            newRecords, 
+            {
+                recordIndex: activeRecordIndex + 1,
+                offset: 0,
+            },
+            () => this.updateSelection(activeRecordIndex + 1, 0),
+        );
+    }
+
+    updateSelection(recordIndex, offset) {
+        const selection = this.getSelection();
+        const range = document.createRange();
+        const recordId = this.getEditorState().records[recordIndex].id;
+        const recordElement = document.getElementById(`tag-${recordId}`);
+
+        range.setStart(recordElement.childNodes[0], offset);
+        range.collapse(true);
+        selection.removeAllRanges();
+        selection.addRange(range);
+    }
+
+    getActiveRecordTag() {
+        const activeRecordIndex = this.getActiveRecordIndex();
+        const activeRecordTag = this.getEditorState().records[activeRecordIndex].tag;
+        return activeRecordTag;
+    }
+
+    getMaxId() {
+        const recordIds = this.getEditorState().records.map(record => record.id);
+        const maxId = Math.max.apply(null, recordIds);
+        return maxId;
+    }
+
+    buildRecord(id, tag, html) {
+        return {
+            id: id,
+            tag: tag,
+            html: html,
+        };
+    }
+
+    updateEditorStateWithCharacter(character) {
+        const activeRecordIndex = this.getActiveRecordIndex();
+        const activeRecordHtml = this.getActiveRecordHtml();
+        const caretPosition = this.getCaretPosition();
+        const newActiveRecordHtml = activeRecordHtml.slice(0, caretPosition) + character + activeRecordHtml.slice(caretPosition);
+        const newRecords = update(this.getEditorState().records, {
             [activeRecordIndex]: {
                 html: {$set: newActiveRecordHtml}
             }
         });
-        const newCaretPosition = this.calculateNewCaretPosition(caretOffset);
-        this.setState({
-            editorState: {
-                contents: newContents,
-                caretPosition: this.getCaretPosition() + caretOffset,
-            }
-        });
-    }
-
-    calculateNewCaretPosition(caretOffset) {
-        let caretPosition = this.getCaretPosition() + caretOffset;
-        if (caretPosition < 0) {
-            return 0;
-        }
-        return caretPosition;
-    }
-    
-    processEnter() {
-        console.log('Enter');
-    }
-
-    updateEditorStateWithCharacter(character) {
-        const activeRecordHtml = this.getActiveRecordHtml();
-        const caretPosition = this.getCaretPosition();
-        const newActiveRecordHtml = activeRecordHtml.slice(0, caretPosition) + character + activeRecordHtml.slice(caretPosition);
-        this.updateEditorState(newActiveRecordHtml, 1);
+        const newCaret = this.offsetCaretPosition(1);
+        this.updateEditorState(newRecords, newCaret);
     }
 }
