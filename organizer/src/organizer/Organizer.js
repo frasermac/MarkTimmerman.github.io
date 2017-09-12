@@ -131,10 +131,7 @@ export default class Organizer extends React.Component {
 
     buildStyle() {
         return {
-            display: 'block',
-            margin: '15px auto',
             width: this.getWidth() + 'px',
-            whiteSpace: 'pre-wrap',
         };
     }
 
