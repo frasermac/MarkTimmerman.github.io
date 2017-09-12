@@ -83,6 +83,7 @@ export default class Organizer extends React.Component {
             display: 'block',
             margin: '15px auto',
             width: this.getWidth() + 'px',
+            whiteSpace: 'pre',
         };
     }
 
