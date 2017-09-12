@@ -7,9 +7,11 @@ export default class Organizer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            editorState: this.getInitialEditorState()
+            editorState: this.getInitialEditorState(),
+            depressedKeys: {},
         };
-        this.handleChange = this.handleChange.bind(this);
+        this.handleKeyDown = this.handleKeyDown.bind(this);
+        this.handleKeyUp = this.handleKeyUp.bind(this);
     }
 
     getInitialEditorState() {
@@ -50,13 +52,17 @@ export default class Organizer extends React.Component {
         };
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        return this.state.depressedKeys.Meta === nextState.depressedKeys.Meta;
+    }
+
     render() {
         return (
             <div
                 className='Organizer'
-                style={this.buildStyle()}
                 ref={(element) => {if (element !== null) { element.contentEditable=true; }}}
-                onKeyDown={this.handleChange}
+                onKeyDown={this.handleKeyDown}
+                onKeyUp={this.handleKeyUp}
             >
                 {this.getRecords()}
             </div>
@@ -129,23 +135,6 @@ export default class Organizer extends React.Component {
         }
     }
 
-    buildStyle() {
-        return {
-            width: this.getWidth() + 'px',
-        };
-    }
-
-    getWidth() {
-        if (window.innerWidth <= this.getDefaultPageWidth()) {
-            return window.innerWidth;
-        }
-        return this.getDefaultPageWidth();
-    }
-
-    getDefaultPageWidth() {
-        return 800;
-    }
-
     getRecords() {
         const records = this.getEditorState().records.map((element, i) => this.buildElement(element, i));
         return records;
@@ -185,7 +174,7 @@ export default class Organizer extends React.Component {
         return records;
     }
 
-    handleChange(event) {
+    handleKeyDown(event) {
         const key = event.key;
         this.processInput(key, event);
     }
@@ -197,6 +186,10 @@ export default class Organizer extends React.Component {
         }
         event.preventDefault();
         const character = key;
+        if (this.isCommand()) {
+            this.processCommand(key);
+            return;
+        }
         this.updateEditorStateWithCharacter(character);
     }
 
@@ -224,6 +217,9 @@ export default class Organizer extends React.Component {
                 return;
             case 'Shift':
                 return;
+            case 'Meta':
+                this.setKeyAsDepressed(key);
+                return;
             default:
                 console.log(key);
                 break;
@@ -233,7 +229,7 @@ export default class Organizer extends React.Component {
     processBackspace() {
         const activeRecordIndex = this.getActiveRecordIndex();
         const activeRecordHtml = this.getActiveRecordHtml();
-        const caretPosition = this.getCaretPosition();
+        const caretPosition = this.getCaretPosition().startOffset;
         if (activeRecordIndex === 0 && caretPosition === 0) {
             return;
         }
@@ -301,15 +297,17 @@ export default class Organizer extends React.Component {
     offsetCaretPosition(offset) {
         const caret = this.getEditorState().caret;
         const newCaret = update(caret, {
-            offset: {$set: this.getCaretPosition() + offset}
+            offset: {$set: this.getCaretPosition().startOffset + offset}
         });
         return newCaret;
     }
 
     getCaretPosition() {
         const selection = this.getSelection();
-        const caretPosition = selection.anchorOffset;
-        return caretPosition;
+        return {
+            startOffset: Math.max(selection.anchorOffset, selection.focusOffset),
+            endOffset: Math.min(selection.anchorOffset, selection.focusOffset),
+        };
     }
 
     getActiveRecordHtml() {
@@ -396,10 +394,49 @@ export default class Organizer extends React.Component {
         };
     }
 
+    isCommand() {
+        return this.state.depressedKeys.Meta;
+    }
+
+    processCommand(key) {
+        const keyAsInt = parseInt(key, 10);
+        if (!isNaN(keyAsInt)) {
+            this.changeActiveRecordToHeading(keyAsInt);
+            return;
+        }
+        console.log('Command + ' + key);
+    }
+
+    changeActiveRecordToHeading(headingLevel) {
+        if (headingLevel > 6) {
+            return;
+        }
+        if (headingLevel === 0) {
+            this.updateActiveRecordTag('p');
+            return;
+        }
+        this.updateActiveRecordTag(`h${headingLevel}`);
+    }
+
+    updateActiveRecordTag(newTag) {
+        const activeRecordIndex = this.getActiveRecordIndex();
+        const newRecords = update(this.getEditorState().records, {
+            [activeRecordIndex]: {
+                tag: {$set: newTag}
+            }
+        });
+        const newCaret = this.offsetCaretPosition(0);
+        this.updateEditorState(
+            newRecords, 
+            newCaret,
+            () => this.updateSelection(activeRecordIndex, newCaret.offset),
+        );
+    }
+
     updateEditorStateWithCharacter(character) {
         const activeRecordIndex = this.getActiveRecordIndex();
         const activeRecordHtml = this.getActiveRecordHtml();
-        const caretPosition = this.getCaretPosition();
+        const caretPosition = this.getCaretPosition().startOffset;
         const newActiveRecordHtml = activeRecordHtml.slice(0, caretPosition) + character + activeRecordHtml.slice(caretPosition);
         const newRecords = update(this.getEditorState().records, {
             [activeRecordIndex]: {
@@ -408,5 +445,23 @@ export default class Organizer extends React.Component {
         });
         const newCaret = this.offsetCaretPosition(1);
         this.updateEditorState(newRecords, newCaret);
+    }
+
+    setKeyAsDepressed(key) {
+        this.setKeyDepression(key, true);
+    }
+
+    setKeyDepression(key, depressed) {
+        const newDepressedKeys = update(this.state.depressedKeys, {
+            [key]: {$set: depressed},
+        });
+        this.setState({
+            depressedKeys: newDepressedKeys,
+        });
+    }
+
+    handleKeyUp(event) {
+        const key = event.key;
+        this.setKeyDepression(key, false);
     }
 }
