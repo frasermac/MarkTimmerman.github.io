@@ -1,9 +1,77 @@
 [
     {
+        "place": "Cambridge, MA",
+        "name": "19 Pleasant",
+        "startDate": "2017-09-17",
+        "endDate": "2017-09-18"
+    },
+    {
+        "place": "West Yarmouth, Cape Cod, MA",
+        "name": "Bugga Beach",
+        "startDate": "2017-09-16",
+        "endDate": "2017-09-17"
+    },
+    {
+        "place": "Cambridge, MA",
+        "name": "19 Pleasant",
+        "startDate": "2017-09-10",
+        "endDate": "2017-09-16"
+    },
+    {
+        "place": "Brookfield, CT",
+        "name": "Home",
+        "startDate": "2017-09-08",
+        "endDate": "2017-09-10"
+    },
+    {
+        "place": "Cambridge, MA",
+        "name": "19 Pleasant",
+        "address": "19 Pleasant Street, Apartment 23B, Cambridge, MA 02139",
+        "coordinates": {
+            "lat": 42.365347,
+            "lng": -71.106973
+        },
+        "startDate": "2017-09-05",
+        "endDate": "2017-09-08"
+    },
+    {
+        "place": "Rockland, ME",
+        "name": "Cowan Residence",
+        "startDate": "2017-09-04",
+        "endDate": "2017-09-05",
+        "notes": "Stayed in their shed."
+    },
+    {
+        "place": "Vinalhaven, ME",
+        "name": "Webster Residence",
+        "startDate": "2017-09-03",
+        "endDate": "2017-09-04"
+    },
+    {
+        "place": "Rockland, ME",
+        "name": "Cowan Residence",
+        "startDate": "2017-08-30",
+        "endDate": "2017-09-03",
+        "notes": "Stayed in their shed."
+    },
+    {
+        "place": "Boston, MA",
+        "name": "103 Myrtle",
+        "startDate": "2017-08-29",
+        "endDate": "2017-08-30",
+        "notes": "Ketch, Paris, and Mark slept on the roof, and it rained."
+    },
+    {
+        "place": "Brookfield, CT",
+        "name": "Home",
+        "startDate": "2017-08-27",
+        "endDate": "2017-08-29"
+    },
+    {
         "place": "Boston, MA",
         "name": "103 Myrtle",
         "startDate": "2017-08-21",
-        "endDate": "2017-08-22"
+        "endDate": "2017-08-27"
     },
     {
         "place": "Cherokee National Forest",
