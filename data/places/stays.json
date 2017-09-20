@@ -2,6 +2,18 @@
     {
         "place": "Cambridge, MA",
         "name": "19 Pleasant",
+        "startDate": "2017-09-19",
+        "endDate": "2017-09-20"
+    },
+    {
+        "place": "48 Banks, Cambridge, MA",
+        "name": "Macdonald Residence",
+        "startDate": "2017-09-18",
+        "endDate": "2017-09-19"
+    },
+    {
+        "place": "Cambridge, MA",
+        "name": "19 Pleasant",
         "startDate": "2017-09-17",
         "endDate": "2017-09-18"
     },
